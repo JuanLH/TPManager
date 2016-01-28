@@ -65,12 +65,16 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         txt_id.setEnabled(false);
         txt_id_cliente.setText(Integer.toString(DtoPrestamo.getPrestamo().getCliente_id()));
         txt_id_cliente.setEnabled(false);
+        lbl_buscar_idCliente.setVisible(false);
+        
         txt_id_tprestamo.setText(Integer.toString(DtoPrestamo.getPrestamo().getTipo_prestamo_id()));
         txt_id_tprestamo.setEnabled(false);
+        lbl_buscar_tPrestamo.setVisible(false);
+       
+        
         txt_id_ruta.setText(Integer.toString(DtoPrestamo.getPrestamo().getRuta_id()));
         DtoPrestamo.setId_rutaSeleccionada(DtoPrestamo.getPrestamo().getRuta_id());
-        cmb_estado.setSelectedIndex(DtoPrestamo.getPrestamo().getEstado());
-        cmb_estado.setEnabled(false);
+        
         
     }
     
@@ -85,7 +89,6 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         btn_limpiar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -95,7 +98,6 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         txt_id_ruta = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_id_cliente = new javax.swing.JTextField();
-        cmb_estado = new javax.swing.JComboBox();
         lbl_buscar_tPrestamo = new javax.swing.JLabel();
         lbl_buscar_idCliente = new javax.swing.JLabel();
         lbl_buscar_idRuta = new javax.swing.JLabel();
@@ -117,12 +119,9 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("ID RUTA");
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel14.setText("ESTADO:");
-
         btn_limpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
-        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_limpiar.setName("btn_limpiar"); // NOI18N
 
         btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -180,9 +179,6 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         txt_id_cliente.setName("txt_id"); // NOI18N
         txt_id_cliente.setSelectedTextColor(new java.awt.Color(0, 0, 0));
         txt_id_cliente.setSelectionColor(new java.awt.Color(0, 255, 0));
-
-        cmb_estado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ACTIVO", "INACTIVO" }));
-        cmb_estado.setAutoscrolls(true);
 
         lbl_buscar_tPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
         lbl_buscar_tPrestamo.setToolTipText("");
@@ -247,11 +243,7 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
                                 .addGap(30, 30, 30)
                                 .addComponent(txt_id_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lbl_buscar_idCliente))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(30, 30, 30)
-                                .addComponent(cmb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lbl_buscar_idCliente)))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -279,13 +271,7 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txt_id_ruta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lbl_buscar_idRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(cmb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(54, 54, 54)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_limpiar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -334,7 +320,7 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
             prestamo.setTipo_prestamo_id(Integer.parseInt(txt_id_tprestamo.getText()));
             prestamo.setCliente_id(Integer.parseInt(txt_id_cliente.getText()));
             prestamo.setRuta_id(Integer.parseInt(txt_id_ruta.getText()));
-            prestamo.setEstado(cmb_estado.getSelectedIndex());
+            
             prestamo.setUser(DtoUsuario.getUser().getId());
             
                 if(eleccion == 0){
@@ -429,9 +415,7 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
     private javax.swing.JButton btn_aceptar;
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_limpiar;
-    private javax.swing.JComboBox cmb_estado;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
