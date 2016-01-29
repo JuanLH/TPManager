@@ -296,6 +296,7 @@ public class Prestamo {
         
     }
     
+    //Metodo que elimina un prestamo de la base de datos
     public static String eliminar_prestamo(int id){
         DB dbase = Utilities.getConection();
         String query = "SELECT eliminar_prestamo("+id+");";
