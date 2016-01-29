@@ -37,7 +37,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         btn_modificar.setEnabled(false);
         btn_ver.setEnabled(false);
         btn_elegir.setEnabled(false);
-        
+        btn_eliminar.setEnabled(false);  
     }
     
     public frm_consult_prestamo(java.awt.Dialog parent, boolean modal) {
@@ -431,6 +431,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         btn_modificar.setEnabled(true);
         btn_ver.setEnabled(true);
         btn_elegir.setEnabled(true);
+        btn_eliminar.setEnabled(true);
         
         /*id = (int)client_table.getModel().getValueAt(client_table.getSelectedRow(), 0);
         btn_add.setEnabled(true);*/

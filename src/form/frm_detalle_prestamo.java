@@ -313,8 +313,8 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
          Pago pago = new Pago();
-            String msj = "!ESTA SEGURO DE QUE QUIERE ELIMINAR ESTE PAGO?";
-            if(Mensajes.confirmar(evt,msj) == 0){
+            int opcion=Mensajes.confirmar(evt, "Esta seguro de Eliminar este pago");
+            if(opcion ==0){
                     String respuesta = pago.eliminar_pago((int)pago_table.getModel().getValueAt(pago_table.getSelectedRow(), 0));
                 if(respuesta == "1"){
                     Mensajes.mensajeInfo(evt, "SE ELIMINO CORRECTAMENTE");
