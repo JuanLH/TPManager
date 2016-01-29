@@ -73,6 +73,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         radTodos = new javax.swing.JRadioButton();
         radPagados = new javax.swing.JRadioButton();
         lbl_buscar_tPrestamo = new javax.swing.JLabel();
+        btn_eliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("BUSCAR PRESTAMO");
@@ -93,7 +94,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
 
         btn_buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_buscar.setText("BUSCAR");
-        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_buscar.setName("btn_buscar"); // NOI18N
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +104,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
 
         btn_elegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_elegir.setText("ELEGIR");
-        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_elegir.setName("btn_aceptar"); // NOI18N
         btn_elegir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +114,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("CANCELAR");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setName("btn_aceptar"); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +149,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
 
         btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_modificar.setText("MODIFICAR");
-        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_modificar.setName("btn_aceptar"); // NOI18N
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,7 +159,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
 
         btn_ver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_ver.setText("VER");
-        btn_ver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_ver.setName("btn_buscar"); // NOI18N
         btn_ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,6 +182,16 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         lbl_buscar_tPrestamo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 lbl_buscar_tPrestamoMousePressed(evt);
+            }
+        });
+
+        btn_eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_eliminar.setText("ELIMINAR");
+        btn_eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_eliminar.setName("btn_buscar"); // NOI18N
+        btn_eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_eliminarActionPerformed(evt);
             }
         });
 
@@ -218,6 +229,8 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
                                 .addComponent(btn_elegir)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_modificar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btn_eliminar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btn_ver)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -263,7 +276,8 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
                     .addComponent(btn_elegir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_ver, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_ver, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(34, Short.MAX_VALUE))
         );
 
@@ -445,6 +459,38 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         txt_ruta.setText(Integer.toString(DtoRuta.getIdRuta()));
     }//GEN-LAST:event_lbl_buscar_tPrestamoMousePressed
 
+    private void btn_eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarActionPerformed
+        // TODO add your handling code here:
+       String msj = "!ESTA SEGURO DE QUE DESEA ELIMINAR EL PRESTAMO SELECCIONADO?";
+        if(Mensajes.confirmar(evt,msj) == 0){
+            String respon = Prestamo.eliminar_prestamo((int)prestamo_table.getModel().getValueAt(prestamo_table.getSelectedRow(),0));
+            if(respon.equals("1")){
+                Mensajes.mensajeInfo(evt,"EL PRESTAMO SE ELIMINO CORRECTAMENTE Y\nSE MODIFICARON LAS CUENTAS");
+                btn_buscarActionPerformed(evt);
+            }
+            
+            else if(respon.equals("0")){
+                Mensajes.mensajeInfo(evt,"ANTES DE ELIMINAR EL PRESTAMO DEBE\nDE ELIMINAR LOS PAGOS EXISTENTES\n-HAGA CLICK EN VER PARA ELIMINAR LOS PAGOS");
+            }
+            
+            else if(respon.equals("-1")){
+                Mensajes.mensajeError(evt,"OCURRIO UN PROBLEMA EN LA BDD");
+            }
+            
+            else if(respon.equals("-2")){
+                Mensajes.mensajeInfo(evt,"NO ESTA PERMITIDO ELIMINAR ESTE PRESTAMO\nPORQUE YA FUE SALDADO");
+            }
+            else{
+                Mensajes.mensajeError(evt, respon);
+            }
+            
+            
+            
+            
+        }
+        
+    }//GEN-LAST:event_btn_eliminarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -483,6 +529,7 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_elegir;
+    private javax.swing.JButton btn_eliminar;
     private javax.swing.JButton btn_modificar;
     private javax.swing.JButton btn_ver;
     private javax.swing.ButtonGroup buttonGroup1;
