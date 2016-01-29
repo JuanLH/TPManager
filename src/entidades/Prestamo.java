@@ -296,6 +296,20 @@ public class Prestamo {
         
     }
     
+    public static String  eliminar_prestamo(int id){
+        DB dbase = Utilities.getConection();
+        String query = "SELECT eliminar_prestamo("+id+")";
+        int respon;
+        try{
+            ResultSet rs = dbase.execSelect(query);
+            rs.next();
+            respon = rs.getInt(1);
+        }
+        catch(SQLException e){
+            return e.getMessage();
+        }
+        return Integer.toString(respon);
+    }
     
     
 }
