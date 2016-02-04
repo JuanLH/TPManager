@@ -59,7 +59,7 @@ public class ticket_pago {
             escp.print("                 A & M                    ");ln(1);
             escp.print("              INVERSIONES                 ");ln(2);
             /*                        TELEFONOS       Pondria aqui           */
-            escp.print("     809-316-8252 & 849-656-8481          ");ln(1);
+            escp.print("     809-316-6252 & 849-656-8481          ");ln(1);
             escp.print("             849-209-0001");ln(2);
             
             escp.print("-------------RECIBO DE PAGO-------------");ln(1);

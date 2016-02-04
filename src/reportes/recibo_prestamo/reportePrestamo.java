@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package reportes.prestamo;
+package reportes.recibo_prestamo;
 
 import clases.Utilities;
 import entidades.prestamoReportClass;

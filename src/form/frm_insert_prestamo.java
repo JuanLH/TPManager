@@ -18,7 +18,7 @@ import entidades.Prestamo;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
-import reportes.prestamo.reportePrestamo;
+import reportes.recibo_prestamo.reportePrestamo;
 
 
 
