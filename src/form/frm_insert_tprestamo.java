@@ -19,6 +19,8 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
     /**
      * Creates new form frm_insert_tprestamo
      */
+    int pagos;
+    
     public frm_insert_tprestamo(java.awt.Frame parent,boolean modal) {
         super(parent,modal);
         initComponents();
@@ -41,8 +43,9 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         txt_pagos.setText(Integer.toString(tp.getPagos()));
         
         lbl_cuota.setText(Float.toString(Utilities.getCuota(Integer.parseInt(txt_id.getText()))));
-        lbl_ganancia.setText(Float.toString(Utilities.getGanancia(Integer.parseInt(txt_id.getText()))));
-        lbl_montot.setText(Float.toString(Utilities.getMontot(Integer.parseInt(txt_id.getText()))));
+        lbl_ganancia.setText(Utilities.getGanancia(Integer.parseInt(txt_id.getText())));
+        lbl_montot.setText(Utilities.getMontot(Integer.parseInt(txt_id.getText())));
+        
     }
     
     
@@ -63,7 +66,7 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         txt_interes = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         txt_pagos = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        lbl_pagos = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         btn_limpiar = new javax.swing.JButton();
         btn_cancelar = new javax.swing.JButton();
@@ -76,6 +79,8 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         lbl_montot = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        cmb_frm_prestamo = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("ENTRADA TIPO DE PAGO");
@@ -133,15 +138,15 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel3.setText("PAGOS:");
+        lbl_pagos.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lbl_pagos.setText("PAGOS:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("ESTADO:");
 
         btn_limpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
-        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_limpiar.setName("btn_limpiar"); // NOI18N
         btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -151,7 +156,7 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
 
         btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_cancelar.setText("CANCELAR");
-        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -160,7 +165,7 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
 
         btn_aceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_aceptar.setText("ACEPTAR");
-        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_aceptar.setName("btn_aceptar"); // NOI18N
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,6 +231,18 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel9.setText("FORMA DE PRESTAMO");
+
+        cmb_frm_prestamo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SAN", "REDITO" }));
+        cmb_frm_prestamo.setActionCommand("m");
+        cmb_frm_prestamo.setAutoscrolls(true);
+        cmb_frm_prestamo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmb_frm_prestamoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -236,33 +253,41 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel3)
+                            .addComponent(lbl_pagos)
                             .addComponent(jLabel1))
-                        .addGap(67, 67, 67)
+                        .addGap(20, 20, 20)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_monto, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE)
                             .addComponent(txt_id)
                             .addComponent(txt_pagos)))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addGap(19, 19, 19)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmb_estado, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_interes))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(20, 20, 20)
+                                        .addComponent(cmb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txt_interes, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(20, 20, 20)
+                                .addComponent(cmb_frm_prestamo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addComponent(btn_aceptar)
                         .addGap(18, 18, 18)
-                        .addComponent(btn_cancelar)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_limpiar)))
+                        .addComponent(btn_cancelar)))
+                .addGap(18, 18, 18)
+                .addComponent(btn_limpiar)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -277,20 +302,19 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmb_frm_prestamo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_interes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(13, 13, 13)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txt_pagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                    .addComponent(lbl_pagos)
+                    .addComponent(txt_pagos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmb_estado, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btn_cancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -310,12 +334,18 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
             return;   
         }
         else{
+            if(cmb_frm_prestamo.getSelectedIndex()==1){
+                this.pagos=Integer.parseInt(txt_pagos.getText());}
+            else if(cmb_frm_prestamo.getSelectedIndex()==2){
+                this.pagos=0; }
+            
             TipoPrestamo tPrestamo = new TipoPrestamo();
             tPrestamo.setId(Integer.parseInt(txt_id.getText()));
             tPrestamo.setMonto(Integer.parseInt(txt_monto.getText()));
-            tPrestamo.setPagos(Integer.parseInt(txt_pagos.getText()));
+            tPrestamo.setPagos(this.pagos);
             tPrestamo.setInteres(Float.parseFloat(txt_interes.getText()));
             tPrestamo.setEstado(0);
+            tPrestamo.setForma_prestamo_id(cmb_frm_prestamo.getSelectedIndex()+1);
             
             Gson json = new Gson();
             /*Hacer el calculo del interes que se le tomara*/
@@ -325,12 +355,15 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
                 Mensajes.mensajeInfo(evt, "SE AGREGO CORRECTAMENTE");
                  Utilities.setDisable(getContentPane());
                  lbl_cuota.setText(Float.toString(Utilities.getCuota(Integer.parseInt(txt_id.getText()))));
-                 lbl_ganancia.setText(Float.toString(Utilities.getGanancia(Integer.parseInt(txt_id.getText()))));
-                 lbl_montot.setText(Float.toString(Utilities.getMontot(Integer.parseInt(txt_id.getText()))));
+                 lbl_ganancia.setText(Utilities.getGanancia(Integer.parseInt(txt_id.getText())));
+                 lbl_montot.setText(Utilities.getMontot(Integer.parseInt(txt_id.getText())));
+                
                  btn_aceptar.setEnabled(false);
             }
             else{
                 Mensajes.mensajeError(evt, "Error de la Base de Datos");
+                
+                
             }
             
             
@@ -397,6 +430,20 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
          }
     }//GEN-LAST:event_txt_interesKeyTyped
 
+    private void cmb_frm_prestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmb_frm_prestamoActionPerformed
+        // TODO add your handling code here:
+        if((cmb_frm_prestamo.getSelectedIndex()+1)==2){
+            txt_pagos.setVisible(false);
+            lbl_pagos.setVisible(false);
+            txt_pagos.setText("0");
+        }
+        
+        if((cmb_frm_prestamo.getSelectedIndex()+1)==1){
+            txt_pagos.setVisible(true);
+            lbl_pagos.setVisible(true);
+        }
+    }//GEN-LAST:event_cmb_frm_prestamoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -438,18 +485,20 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
     private javax.swing.JButton btn_cancelar;
     private javax.swing.JButton btn_limpiar;
     private javax.swing.JComboBox cmb_estado;
+    private javax.swing.JComboBox cmb_frm_prestamo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbl_cuota;
     private javax.swing.JLabel lbl_ganancia;
     private javax.swing.JLabel lbl_montot;
+    private javax.swing.JLabel lbl_pagos;
     private javax.swing.JTextField txt_id;
     private javax.swing.JTextField txt_interes;
     private javax.swing.JTextField txt_monto;

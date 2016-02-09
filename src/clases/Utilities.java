@@ -28,7 +28,7 @@ public class Utilities {
     private static Connection cnn = null;
     
     public static DB getConection(){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+        DB dbase = new DB("DB_TPManager","postgres","JuanLH@19");
         cnn = dbase.getConection();
         return dbase;
     }
@@ -137,32 +137,32 @@ public class Utilities {
     }
     
     
-    public static float getMontot(int id){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+    public static String getMontot(int id){
+        DB dbase = Utilities.getConection();
         String sql = "select tipo_prestamo_montot("+id+")";
         try{
             ResultSet rs = dbase.execSelect(sql);
             rs.next();
-            float montot = rs.getFloat(1);
+            String montot =  rs.getString(1);
             rs.close();
-            
+           
             return montot;
         }
         catch(SQLException e){
             System.out.println("Bdd error"+e);
-            return -1;
+            return "-1";
         }
     }
     
     public static float getCuota(int id){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+        DB dbase = Utilities.getConection();
         String sql = "select tipo_prestamo_cuota("+id+")";
         try{
             ResultSet rs = dbase.execSelect(sql);
             rs.next();
             float cuota = rs.getFloat(1);
             rs.close();
-            
+            System.out.println("Cuota"+cuota);
             return cuota;
         }
         catch(SQLException e){
@@ -171,25 +171,29 @@ public class Utilities {
         }
     }
     
-    public static float getGanancia(int id){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+    public static String getGanancia(int id){
+        DB dbase = Utilities.getConection();
         String sql = "select tipo_prestamo_ganancia("+id+")";
         try{
             ResultSet rs = dbase.execSelect(sql);
             rs.next();
-            float ganancia = rs.getFloat(1);
+            Float ganancia = rs.getFloat(1);
             rs.close();
             
-            return ganancia;
+            System.out.println("Ganancia respo"+ganancia);
+            if(ganancia == -3)
+                return "?????";
+            else   
+                return ganancia.toString();
         }
         catch(SQLException e){
             System.out.println("Bdd error"+e);
-            return -1;
+            return "-1";
         }
     }
     
     public static int getMaxId(String tabla){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+        DB dbase = Utilities.getConection();
         String sql = "select max(id) from "+tabla+";";
         try{
             ResultSet rs = dbase.execSelect(sql);

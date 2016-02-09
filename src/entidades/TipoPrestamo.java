@@ -19,8 +19,16 @@ import java.util.ArrayList;
  * @author JuanLuis
  */
 public class TipoPrestamo {
-    int id,estado,monto,pagos;
+    int id,estado,monto,pagos,forma_prestamo_id;
     float interes;
+
+    public int getForma_prestamo_id() {
+        return forma_prestamo_id;
+    }
+
+    public void setForma_prestamo_id(int forma_prestamo_id) {
+        this.forma_prestamo_id = forma_prestamo_id;
+    }
 
     public int getId() {
         return id;
@@ -64,8 +72,8 @@ public class TipoPrestamo {
     
     public String insertar_tipo_prestamo(String informacion){
         DB dbase = Utilities.getConection();
-        String sql="INSERT INTO tipo_prestamo(monto, pagos, interes, estado)";
-        sql +="VALUES (?,?,?,?);";
+        String sql="INSERT INTO tipo_prestamo(monto, pagos, interes, estado, forma_prestamo_id)";
+        sql +="VALUES (?,?,?,?,?);";
         try{
            PreparedStatement p = DB.conexion.prepareStatement(sql);
            Gson json = new Gson();
@@ -76,6 +84,7 @@ public class TipoPrestamo {
            p.setInt(2, info.getPagos());
            p.setFloat(3, info.getInteres());
            p.setInt(4, info.getEstado());
+           p.setInt(5,  info.getForma_prestamo_id());
            p.executeQuery();
            
            dbase.CerrarConexion();
@@ -83,7 +92,10 @@ public class TipoPrestamo {
             
         }
         catch(SQLException e){
+           System.out.println(e.getSQLState());
+           System.out.println(e.getMessage());
            return e.getSQLState();
+           
         }
     }
     
