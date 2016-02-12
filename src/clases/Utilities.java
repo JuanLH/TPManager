@@ -71,13 +71,16 @@ public class Utilities {
     
     public static float getPago(int index,int id_prestamo){
         DB dbase = Utilities.getConection();
-        String sql;
+        String sql=null;
         Float pago=null;
         if(index==2 || index == 1){
             sql="select tipo_prestamo_extra("+id_prestamo+")";
         }
-        else
+        else if(index == 0)
             sql="select tipo_prestamo_cuota("+id_prestamo+")";
+        else if(index == 3)
+            sql = "select tipo_prestamo_montot("+id_prestamo+")";
+        
         try{
             ResultSet rs = dbase.execSelect(sql); 
             rs.next();
@@ -249,13 +252,14 @@ public class Utilities {
         }
         
         ArrayList<TipoPrestamo> lista_tipo_prestamo = new ArrayList<TipoPrestamo>();
-        String query_tipo_prestamo = "select id,pagos from tipo_prestamo";
+        String query_tipo_prestamo = "select id,pagos,forma_prestamo_id from tipo_prestamo";
         try{
             ResultSet rs = dbase.execSelect(query_tipo_prestamo);
             while(rs.next()){
                 TipoPrestamo tp = new TipoPrestamo();
                 tp.setId(rs.getInt(1));
                 tp.setPagos(rs.getInt(2));
+                tp.setForma_prestamo_id(rs.getInt(3));
                 
                 
                 lista_tipo_prestamo.add(tp);
@@ -271,22 +275,38 @@ public class Utilities {
         for(int x=0 ; x<lista_tipo_prestamo.size();x++){
             int tp = lista_tipo_prestamo.get(x).getId();
             int cant_pagos = lista_tipo_prestamo.get(x).getPagos();
+            int forma_prestamo_id = lista_tipo_prestamo.get(x).getForma_prestamo_id();
             String query_gan = "SELECT tipo_prestamo_ganancia("+tp+");";
             String query_extras = "SELECT tipo_prestamo_extra("+tp+");";
+            String query_gan_redito = "Select tipo_prestamo_cuota("+tp+")";
             
             try{
-                ResultSet rs = dbase.execSelect(query_gan);
-                rs.next();
-                
-                double ganancia_pendiente = rs.getDouble(1);
-                ganancia_pago_pendiente = ganancia_pendiente/lista_tipo_prestamo.get(x).getPagos();
-                System.out.println("ganancia de pago = "+ganancia_pago_pendiente);
-                rs.close();
-                rs = dbase.execSelect(query_extras);
-                rs.next();
-                
-                ganancia_pago_extras=rs.getDouble(1);  
-                rs.close();
+                if(forma_prestamo_id != 2){
+                    ResultSet rs = dbase.execSelect(query_gan);
+                    rs.next();
+                    /**/
+                    double ganancia_pendiente = rs.getDouble(1);
+                    ganancia_pago_pendiente = ganancia_pendiente/lista_tipo_prestamo.get(x).getPagos();
+                    System.out.println("ganancia de pago = "+ganancia_pago_pendiente);
+                    rs.close();
+                    rs = dbase.execSelect(query_extras);
+                    rs.next();
+
+                    ganancia_pago_extras=rs.getDouble(1);  
+                    rs.close();
+                }
+                else
+                {
+                    ResultSet rs = dbase.execSelect(query_gan_redito);
+                    rs.next();
+                    /**/
+                    ganancia_pago_pendiente = rs.getDouble(1);
+                    rs = dbase.execSelect(query_extras);
+                    rs.next();
+
+                    ganancia_pago_extras=rs.getDouble(1);  
+                    rs.close();
+                }
             }
             catch(SQLException e){
                 System.out.println("Error tomando la ganancia de los pagos del  tipo de prestamo");
@@ -307,7 +327,7 @@ public class Utilities {
                         int id_pago = lista_pagos.get(y).getId_tipo_pago();
                         if(id_pago==1)
                             ganancia_tp = ganancia_tp + ganancia_pago_pendiente;
-                        else//id_pago = 2 || 3
+                        else if(id_pago==2)//id_pago = 2 
                             ganancia_tp = ganancia_tp + ganancia_pago_extras;
                     }
                 //}
@@ -343,7 +363,9 @@ public class Utilities {
         return telefono;
     }
     
-    
+    public static void println(String line){
+        System.out.println(line);
+    }
     
     
 }

@@ -390,20 +390,28 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
             
                 int k;
                 for(Pago p:lista){
-                    k=0;
-                    Object [] fila = new Object[10];
-                    fila[k++]=(Object)p.getId();
-                    fila[k++]=(Object)p.getFecha();
-                    fila[k++]=(Object)p.getTipo_pago_nombre();
-                    fila[k++]=(Object)p.getMonto_prestamo();
-                    fila[k++]=(Object)p.getInteres_prestamo();
-                    fila[k++]=(Object)p.getGanancia_prestamo();
-                    fila[k++]=(Object)p.getCantidad_pago_prestamo();
-                    fila[k++]=(Object)p.getMonto_pago();
-                    fila[k++]=(Object)p.getGanancia_pago();
-                    fila[k++]=(Object)p.getGanancia_acumulada();
-                
-                    modelo.addRow(fila);
+                    
+                           
+                        k=0;
+                        Object [] fila = new Object[10];
+                        fila[k++]=(Object)p.getId();
+                        fila[k++]=(Object)p.getFecha();
+                        fila[k++]=(Object)p.getTipo_pago_nombre();
+                        fila[k++]=(Object)p.getMonto_prestamo();
+                        fila[k++]=(Object)p.getInteres_prestamo();
+                        if(p.getGanancia_prestamo()==-3.0){
+                             fila[k++] = (Object)"INDEFINIDO";
+                        }
+                        else{
+                            fila[k++]=(Object)p.getGanancia_prestamo();
+                        }
+                        fila[k++]=(Object)p.getCantidad_pago_prestamo();
+                        fila[k++]=(Object)p.getMonto_pago();
+                        fila[k++]=(Object)p.getGanancia_pago();
+                        fila[k++]=(Object)p.getGanancia_acumulada();
+
+                        modelo.addRow(fila);
+                    
                 }
             
                 pago_table.setModel(modelo);
@@ -445,19 +453,24 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
                 int k;
                 for(Pago p:lista){
                     k=0;
-                    Object [] fila = new Object[10];
-                    fila[k++]=(Object)p.getId();
-                    fila[k++]=(Object)p.getFecha();
-                    fila[k++]=(Object)p.getTipo_pago_nombre();
-                    fila[k++]=(Object)p.getMonto_prestamo();
-                    fila[k++]=(Object)p.getInteres_prestamo();
-                    fila[k++]=(Object)p.getGanancia_prestamo();
-                    fila[k++]=(Object)p.getCantidad_pago_prestamo();
-                    fila[k++]=(Object)p.getMonto_pago();
-                    fila[k++]=(Object)p.getGanancia_pago();
-                    fila[k++]=(Object)p.getGanancia_acumulada();
-                
-                    modelo.addRow(fila);
+                        Object [] fila = new Object[10];
+                        fila[k++]=(Object)p.getId();
+                        fila[k++]=(Object)p.getFecha();
+                        fila[k++]=(Object)p.getTipo_pago_nombre();
+                        fila[k++]=(Object)p.getMonto_prestamo();
+                        fila[k++]=(Object)p.getInteres_prestamo();
+                        if(p.getGanancia_prestamo()==-3.0){
+                             fila[k++] = (Object)"INDEFINIDO";
+                        }
+                        else{
+                            fila[k++]=(Object)p.getGanancia_prestamo();
+                        }
+                        fila[k++]=(Object)p.getCantidad_pago_prestamo();
+                        fila[k++]=(Object)p.getMonto_pago();
+                        fila[k++]=(Object)p.getGanancia_pago();
+                        fila[k++]=(Object)p.getGanancia_acumulada();
+                        
+                        modelo.addRow(fila);
                 }
             
                 pago_table.setModel(modelo);
@@ -500,19 +513,24 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
                 int k;
                 for(Pago p:lista){
                     k=0;
-                    Object [] fila = new Object[10];
-                    fila[k++]=(Object)p.getId();
-                    fila[k++]=(Object)p.getFecha();
-                    fila[k++]=(Object)p.getTipo_pago_nombre();
-                    fila[k++]=(Object)p.getMonto_prestamo();
-                    fila[k++]=(Object)p.getInteres_prestamo();
-                    fila[k++]=(Object)p.getGanancia_prestamo();
-                    fila[k++]=(Object)p.getCantidad_pago_prestamo();
-                    fila[k++]=(Object)p.getMonto_pago();
-                    fila[k++]=(Object)p.getGanancia_pago();
-                    fila[k++]=(Object)p.getGanancia_acumulada();
+                        Object [] fila = new Object[10];
+                        fila[k++]=(Object)p.getId();
+                        fila[k++]=(Object)p.getFecha();
+                        fila[k++]=(Object)p.getTipo_pago_nombre();
+                        fila[k++]=(Object)p.getMonto_prestamo();
+                        fila[k++]=(Object)p.getInteres_prestamo();
+                        if(p.getGanancia_prestamo()==-3.0){
+                             fila[k++] = (Object)"INDEFINIDO";
+                        }
+                        else{
+                            fila[k++]=(Object)p.getGanancia_prestamo();
+                        }
+                        fila[k++]=(Object)p.getCantidad_pago_prestamo();
+                        fila[k++]=(Object)p.getMonto_pago();
+                        fila[k++]=(Object)p.getGanancia_pago();
+                        fila[k++]=(Object)p.getGanancia_acumulada();
                 
-                    modelo.addRow(fila);
+                        modelo.addRow(fila);
                 }
             
                 pago_table.setModel(modelo);

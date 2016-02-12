@@ -74,7 +74,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
 
         btn_buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_buscar.setText("BUSCAR");
-        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_buscar.setName("btn_buscar"); // NOI18N
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -84,7 +84,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
 
         btn_elegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_elegir.setText("ELEGIR");
-        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_elegir.setName("btn_aceptar"); // NOI18N
         btn_elegir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("CANCELAR");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setName("btn_aceptar"); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -104,7 +104,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
 
         btn_modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_modificar.setText("DESABILITAR");
-        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_modificar.setName("btn_aceptar"); // NOI18N
         btn_modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -134,7 +134,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
 
         btn_ver.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_ver.setText("VER");
-        btn_ver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_ver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_ver.setName("btn_buscar"); // NOI18N
         btn_ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,24 +148,27 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(18, 18, 18)
-                        .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(57, 57, 57)
-                        .addComponent(btn_buscar))
-                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 303, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btn_elegir)
                         .addGap(10, 10, 10)
                         .addComponent(btn_modificar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_ver)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jButton5))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_monto, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btn_buscar)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,7 +214,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
                tprestamo = json.fromJson(json2,TipoPrestamo.class);
                 lista.add(tprestamo);
             }
-            String [] col  = {"ID","MONTO","PAGOS","INTERES","ESTADO"};
+            String [] col  = {"ID","MONTO","PAGOS","INTERES","FORMA_PRESTAMO","ESTADO"};
         
             // ciclo for para agregar cada una de las columnas
             for (int i=0;i<col.length;i++)
@@ -220,11 +223,16 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
              int k;
             for(TipoPrestamo tprest : lista){
                 k=0;
-                Object[] fila = new Object[5];
+                Object[] fila = new Object[6];
                 fila[k++]=(Object)tprest.getId();
                 fila[k++]=(Object)tprest.getMonto();
                 fila[k++]=(Object)tprest.getPagos();
                 fila[k++]=(Float)tprest.getInteres();
+                if(tprest.getForma_prestamo_id()==1){
+                      fila[k++]="SAN";}
+                else{
+                    fila[k++]="REDITO";}
+                
                 fila[k++]=(Object)tprest.getEstado();
                 
             

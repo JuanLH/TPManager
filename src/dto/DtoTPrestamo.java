@@ -34,7 +34,14 @@ public class DtoTPrestamo {
         tprestamo.setMonto((int)table.getModel().getValueAt(table.getSelectedRow(), 1));
         tprestamo.setPagos((int)table.getModel().getValueAt(table.getSelectedRow(), 2));
         tprestamo.setInteres((Float)table.getModel().getValueAt(table.getSelectedRow(), 3));
-        tprestamo.setEstado((int)table.getModel().getValueAt(table.getSelectedRow(), 4));
+        String forma_p = (String)table.getModel().getValueAt(table.getSelectedRow(), 4);
+        if(forma_p.equals("SAN")){
+            tprestamo.setForma_prestamo_id(1);
+        }
+        else{
+            tprestamo.setForma_prestamo_id(2);}
+        
+        tprestamo.setEstado((int)table.getModel().getValueAt(table.getSelectedRow(), 5));
         
         idTPrestamo=(int)table.getModel().getValueAt(table.getSelectedRow(), 0);
     }

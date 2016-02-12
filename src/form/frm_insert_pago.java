@@ -14,6 +14,7 @@ import dataBase.DB;
 import dto.DtoPrestamo;
 import entidades.Pago;
 import java.awt.event.ActionEvent;
+import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
@@ -21,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import reportes.pago.reportePago;
 
@@ -100,7 +102,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
 
         btn_limpiar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_limpiar.setText("LIMPIAR");
-        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_limpiar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_limpiar.setName("btn_limpiar"); // NOI18N
         btn_limpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,7 +112,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
 
         btn_cancelar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_cancelar.setText("CANCELAR");
-        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_cancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_cancelarActionPerformed(evt);
@@ -119,7 +121,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
 
         btn_aceptar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_aceptar.setText("ACEPTAR");
-        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_aceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_aceptar.setName("btn_aceptar"); // NOI18N
         btn_aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -225,8 +227,10 @@ public class frm_insert_pago extends javax.swing.JDialog {
                             .addComponent(jLabel5))
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cmb_tpago, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txt_cantidad))))
+                            .addComponent(txt_cantidad)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(cmb_tpago, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(rad_fecha_actual)
@@ -287,16 +291,37 @@ public class frm_insert_pago extends javax.swing.JDialog {
 
     private void jLabel4MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MousePressed
         // TODO add your handling code here:
+        if(cmb_tpago.getItemCount()==4)
+            cmb_tpago.removeItemAt(3);
+                    
         frm_consult_prestamo frm = new frm_consult_prestamo(this,true);
         frm.setVisible(true);
+        
         if(DtoPrestamo.getIdPrestamo()!=0){
             txt_id_prestamo.setText(Integer.toString(DtoPrestamo.getIdPrestamo()));
             DB dbase = Utilities.getConection();
             String sql = "select cliente_id from prestamo where id = "+DtoPrestamo.getIdPrestamo()+"";
+            String sql2 = "select forma_prestamo_id from tipo_prestamo where id = "+DtoPrestamo.getPrestamo().getTipo_prestamo_id()+"";
+            Utilities.println(sql2);
             try {
                 ResultSet rs = dbase.execSelect(sql);
                 rs.next();
                 dto.DtoCliente.setIdCliente(rs.getInt(1));
+                
+                rs = dbase.execSelect(sql2);
+                rs.next();
+                int forma_pago = rs.getInt(1);
+                if(forma_pago == 2){
+                    String[] items = {"PENDIENTE","MORA","PAPELEO","FINAL"};
+                    
+                    
+                    cmb_tpago.addItem(items[3]);
+                    
+                  
+                }
+                
+               
+                
             } catch (SQLException ex) {
                 Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -325,54 +350,55 @@ public class frm_insert_pago extends javax.swing.JDialog {
         }
         else
         {  
-            if(report.test_stream()) {
-            Pago pago = new Pago();
-            pago.setId(Integer.parseInt(txt_id.getText()));
-            pago.setId_tipo_pago(cmb_tpago.getSelectedIndex()+1);
-            pago.setId_prestamo(Integer.parseInt(txt_id_prestamo.getText()));
-            if(rad_fecha_actual.isSelected())
-                pago.setFecha(Utilities.getCurrentDate());
-            if(rad_fecha_manual.isSelected()){
-                int day = DatePicker.getDate().getDate();
-                int month = DatePicker.getDate().getMonth();
-                int Year = DatePicker.getDate().getYear();
-                Date date = new Date(Year, month, day);
-                pago.setFecha(date);
-            }
+            if(true) {
+                Pago pago = new Pago();
+                pago.setId(Integer.parseInt(txt_id.getText()));
+                pago.setId_tipo_pago(cmb_tpago.getSelectedIndex()+1);
+                pago.setId_prestamo(Integer.parseInt(txt_id_prestamo.getText()));
+                if(rad_fecha_actual.isSelected())
+                    pago.setFecha(Utilities.getCurrentDate());
+                if(rad_fecha_manual.isSelected()){
+                    int day = DatePicker.getDate().getDate();
+                    int month = DatePicker.getDate().getMonth();
+                    int Year = DatePicker.getDate().getYear();
+                    Date date = new Date(Year, month, day);
+                    pago.setFecha(date);
+                }
             
-            Gson json = new Gson();
-            String respon = pago.insertar_pago(json.toJson(pago));
+                Gson json = new Gson();
+                String respon = pago.insertar_pago(json.toJson(pago));
             
-            if(respon.equals("1")){
-                Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
-                /*try {
-                    String  path = "reportes\\pago\\pagoReport.jasper";
-                    reportePago datasource = new reportePago(Integer.parseInt(txt_id.getText()));
-                    AbstractJasperReports.createReport(datasource, path);
-                    AbstractJasperReports.showViewer();
-                
-                } catch (SQLException ex) {
-                    Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                }*/
-                
-                report.print(Integer.parseInt(txt_id.getText()));
-                this.setVisible(false);
-            }
-            else if(respon.equals("0"))
-                Mensajes.mensajeError(evt, "EL CLIETE YA HA SALDADO EL PRESTAMO");   
-            else if(respon.equals("-1"))
-                Mensajes.mensajeError(evt, "ERROR DE INSERCION");  
-            else if(respon.equals("2"))
-                Mensajes.mensajeError(evt, "EL PAPELEO YA HA SIDO PAGADO");  
+                if(respon.equals("1")){
+                    Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
+                    try {
+                        String  path = "reportes\\pago\\pagoReport.jasper";
+                        reportePago datasource = new reportePago(Integer.parseInt(txt_id.getText()));
+                        AbstractJasperReports.createReport(datasource, path);
+                        AbstractJasperReports.showViewer();
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    //report.print(Integer.parseInt(txt_id.getText()));
+                    this.setVisible(false);
+                }
+                else if(respon.equals("0"))
+                    Mensajes.mensajeError(evt, "EL CLIETE YA HA SALDADO EL PRESTAMO");   
+                else if(respon.equals("-1"))
+                    Mensajes.mensajeError(evt, "ERROR DE INSERCION");  
+                else if(respon.equals("2"))
+                    Mensajes.mensajeError(evt, "EL PAPELEO YA HA SIDO PAGADO");  
+                else
+                    Mensajes.mensajeError(evt, "ERROR DE BASE DE DATOS"); 
+            
+            
+            } 
             else
-                Mensajes.mensajeError(evt, "ERROR DE BASE DE DATOS"); 
-            
-            
-        } 
-        else{
-            ActionEvent evt2 = new ActionEvent(this, 50, "Error de impresion");
-            Mensajes.mensajeError(evt2, "No se encuentra la impresora, usted puede\nInspeccionar el estado de la impresora\nY el estado de la red ");
-        }
+            {
+                ActionEvent evt2 = new ActionEvent(this, 50, "Error de impresion");
+                Mensajes.mensajeError(evt2, "No se encuentra la impresora, usted puede\nInspeccionar el estado de la impresora\nY el estado de la red ");
+            }
         }
         
     }//GEN-LAST:event_btn_aceptarActionPerformed

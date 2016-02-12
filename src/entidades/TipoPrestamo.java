@@ -105,11 +105,11 @@ public class TipoPrestamo {
         ArrayList<TipoPrestamo> lista = new ArrayList<TipoPrestamo>();
         String sql;
         if(monto.equals("")){
-            sql = "SELECT id,monto,pagos,interes,estado ";
+            sql = "SELECT id,monto,pagos,interes,estado,forma_prestamo_id ";
             sql += "FROM tipo_prestamo where estado = 0 ;";
         }
         else{
-            sql = "SELECT id,monto,pagos,interes,estado ";
+            sql = "SELECT id,monto,pagos,interes,estado,forma_prestamo_id ";
             sql += "FROM tipo_prestamo where monto = "+Integer.parseInt(monto)+" and estado = 0;";
         }
         
@@ -126,6 +126,7 @@ public class TipoPrestamo {
                 tprestamo.setPagos(rs.getInt(3));
                 tprestamo.setInteres(rs.getFloat(4));
                 tprestamo.setEstado(rs.getInt(5));
+                tprestamo.setForma_prestamo_id(rs.getInt(6));
                 
                 lista.add(tprestamo);
             }

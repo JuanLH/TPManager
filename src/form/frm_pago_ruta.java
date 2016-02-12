@@ -114,7 +114,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
 
         btn_buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_buscar.setText("BUSCAR");
-        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_buscar.setName("btn_buscar"); // NOI18N
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
 
         btn_imprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_imprimir.setText("IMPRIMIR TICKETS");
-        btn_imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_imprimir.setName("btn_buscar"); // NOI18N
         btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,7 +137,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
 
         btn_salir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_salir.setText("SALIR");
-        btn_salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_salir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_salir.setName("btn_buscar"); // NOI18N
         btn_salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -171,12 +171,12 @@ public class frm_pago_ruta extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 541, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(DatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(DatePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 159, Short.MAX_VALUE)
                         .addComponent(btn_buscar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -246,7 +246,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
         ActionEvent evt = new ActionEvent(this, 1, "Impresiones");
         
         
-        if(!lista.isEmpty() && report.test_stream()){
+        if(!lista.isEmpty() /*&& report.test_stream()*/){
             for(int x = 0;x<lista.size();x++){
                 
                 Pago p = new Pago();
@@ -270,7 +270,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
                         Mensajes.mensajeInfo(evt, "SE AGREGARON EXITOSAMENTE ");
                 
                     
-                    /*try {
+                    try {
                         String  path = "reportes\\pago\\pagoReport.jasper";
                         reportePago datasource = new reportePago(p.getId());
                         AbstractJasperReports.createReport(datasource, path);
@@ -279,10 +279,10 @@ public class frm_pago_ruta extends javax.swing.JDialog {
                 
                     } catch (SQLException ex) {
                         Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
+                    }
                     
                 
-                report.print(p.getId());
+                //report.print(p.getId());
                 Mensajes.mensajeInfo(evt, " pulse Ok Para continuar ");
                 this.setVisible(false);
                 }
