@@ -11,6 +11,7 @@ import clases.Mensajes;
 import entidades.Cliente;
 
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.toedter.calendar.JCalendar;
 import com.toedter.components.JSpinField;
@@ -38,6 +39,8 @@ public class frm_insert_client extends javax.swing.JDialog {
     
     public frm_insert_client() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_client(javax.swing.JFrame parent, boolean modal) {
@@ -45,8 +48,9 @@ public class frm_insert_client extends javax.swing.JDialog {
         initComponents();
         txt_id.setText(Integer.toString(Utilities.getMaxId("cliente")));
         btn_limpiar.setEnabled(false);
-        
         eleccion=0;
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_client(javax.swing.JDialog parent){

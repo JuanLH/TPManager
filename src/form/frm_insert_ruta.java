@@ -8,6 +8,7 @@ package form;
 import clases.Mensajes;
 import clases.Tiempo;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoRuta;
 import entidades.Ruta;
@@ -26,10 +27,10 @@ public class frm_insert_ruta extends javax.swing.JDialog {
     public frm_insert_ruta (java.awt.Frame parent,boolean modal){
         super(parent,modal);
         initComponents();
-         
         txt_id.setText(Integer.toString(Utilities.getMaxId("ruta")));
-        
         cmb_estado.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_ruta (java.awt.Dialog parent,boolean modal){
@@ -54,11 +55,15 @@ public class frm_insert_ruta extends javax.swing.JDialog {
         
         txt_id_usuario.setText(Integer.toString(DtoRuta.getRuta().getIdUsuario()));
         cmb_estado.setEnabled(true);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_ruta() {
         initComponents();
         Utilities.getMaxId("ruta");
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

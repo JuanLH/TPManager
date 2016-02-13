@@ -73,7 +73,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ELEGIR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="name" type="java.lang.String" value="btn_aceptar" noResource="true"/>
       </Properties>
@@ -88,7 +88,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="CANCELAR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="name" type="java.lang.String" value="btn_aceptar" noResource="true"/>
       </Properties>
@@ -122,7 +122,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MODIFICAR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="name" type="java.lang.String" value="btn_aceptar" noResource="true"/>
       </Properties>
@@ -137,7 +137,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="MONSTRAR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="name" type="java.lang.String" value="btn_aceptar" noResource="true"/>
       </Properties>
@@ -152,7 +152,7 @@
         </Property>
         <Property name="text" type="java.lang.String" value="PRIORITARIO"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-          <Color id="Hand Cursor"/>
+          <Color id="Cursor Por defecto"/>
         </Property>
         <Property name="name" type="java.lang.String" value="btn_aceptar" noResource="true"/>
       </Properties>

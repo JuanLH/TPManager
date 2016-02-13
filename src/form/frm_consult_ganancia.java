@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import java.sql.Date;
 import org.jdesktop.swingx.JXDatePicker;
 
@@ -26,11 +27,15 @@ public class frm_consult_ganancia extends javax.swing.JDialog {
      */
     public frm_consult_ganancia() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_ganancia(java.awt.Frame parent,boolean modal) {
         super(parent,true);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public boolean valitade_dt(){

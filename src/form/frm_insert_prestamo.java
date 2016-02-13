@@ -7,6 +7,7 @@ package form;
 import clases.AbstractJasperReports;
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoCliente;
 import dto.DtoPrestamo;
@@ -39,6 +40,8 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         txt_id.setEnabled(false);
         txt_id.setText(Integer.toString(Utilities.getMaxId("prestamo")));
         eleccion=0;
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     public frm_insert_prestamo(java.awt.Frame parent , boolean modal) {
@@ -46,9 +49,10 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
         eleccion=0;
         initComponents();
         //Contrucctor de inserciones
-        
         txt_id.setEnabled(false);
         txt_id.setText(Integer.toString(Utilities.getMaxId("prestamo")));
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
     

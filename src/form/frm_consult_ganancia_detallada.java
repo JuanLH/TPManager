@@ -34,19 +34,14 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
      * Creates new form frm_consult_pago
      */
     
-    Date fecha_inicial,
-
-    /**
-     * Creates new form frm_consult_ganancia_detallada
-     */
-    fecha_final;
+    Date fecha_inicial,fecha_final;
     public frm_consult_ganancia_detallada() {
         initComponents();
         GraphicsDevice grafica=GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         //grafica.setFullScreenWindow(this);
         this.setBounds(grafica.getDefaultConfiguration().getBounds());
-        
         this.setVisible(true);
+        
     }
     
     public frm_consult_ganancia_detallada(java.awt.Dialog parent,boolean modal){

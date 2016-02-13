@@ -3,6 +3,8 @@ package form;
 
 import clases.Mensajes;
 import clases.Respuesta;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -30,16 +32,22 @@ public class frm_consult_user extends javax.swing.JDialog {
      */
     public frm_consult_user() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_user(java.awt.Frame parent,boolean modal) {
         super(parent,modal);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_user(java.awt.Dialog parent,boolean modal) {
         super(parent,modal);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     /**
      * This method is called from within the constructor to initialize the form.

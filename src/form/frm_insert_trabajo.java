@@ -8,6 +8,7 @@ package form;
 import clases.Mensajes;
 import clases.Tiempo;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoTelefono;
 import dto.DtoTrabajo;
@@ -34,6 +35,8 @@ public class frm_insert_trabajo extends javax.swing.JDialog {
         txt_cliente_id.setText(Integer.toString(cliente_id));
         txt_cliente_id.setEnabled(false);
         lbl_buscar.setVisible(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
     
@@ -60,11 +63,15 @@ public class frm_insert_trabajo extends javax.swing.JDialog {
         cmb_estado.setSelectedIndex(DtoTrabajo.getTrabajo().getEstado());
         
         eleccion = 1;
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
               
     }
 
     frm_insert_trabajo() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     

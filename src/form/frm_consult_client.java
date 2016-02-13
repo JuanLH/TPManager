@@ -7,6 +7,8 @@ package form;
 
 import clases.Mensajes;
 import clases.Respuesta;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -42,12 +44,14 @@ public class frm_consult_client extends javax.swing.JDialog {
         super(parent,modal);
         
         initComponents();
-        
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     public frm_consult_client(java.awt.Dialog parent,boolean modal){
         super(parent,modal);
         initComponents();
-        
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

@@ -7,6 +7,8 @@ package form;
 
 import clases.Mensajes;
 import clases.Respuesta;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -29,6 +31,8 @@ public class frm_consult_trabajo extends javax.swing.JDialog {
      */
     public frm_consult_trabajo() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_trabajo(java.awt.Dialog parent,boolean modal) {
@@ -36,6 +40,8 @@ public class frm_consult_trabajo extends javax.swing.JDialog {
         initComponents();
         txt_nombre.setText(DtoCliente.getClient().getNombre());
         btn_modificar.setVisible(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
     

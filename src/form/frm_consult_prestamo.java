@@ -7,6 +7,8 @@ package form;
 
 import clases.Mensajes;
 import clases.Respuesta;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -29,6 +31,8 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
      */
     public frm_consult_prestamo() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_prestamo(java.awt.Frame parent, boolean modal) {
@@ -38,12 +42,16 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         btn_ver.setEnabled(false);
         btn_elegir.setEnabled(false);
         btn_eliminar.setEnabled(false);  
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_prestamo(java.awt.Dialog parent, boolean modal) {
         super(parent,modal);
         initComponents();
         btn_modificar.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

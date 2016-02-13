@@ -5,6 +5,9 @@
  */
 package form;
 
+import clases.Utilities;
+import clases.coordinates;
+
 /**
  *
  * @author JuanLuis
@@ -16,11 +19,15 @@ public class frm_eleccion_pago extends javax.swing.JDialog {
      */
     public frm_eleccion_pago() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     public frm_eleccion_pago(java.awt.Frame parent , boolean modal) {
         super(parent,modal);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     /**

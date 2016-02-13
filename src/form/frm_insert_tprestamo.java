@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import entidades.TipoPrestamo;
 
@@ -27,6 +28,8 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         txt_id.setText(Integer.toString(Utilities.getMaxId("tipo_prestamo")));
         txt_id.setEnabled(false);
         cmb_estado.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
         
     }
@@ -45,7 +48,8 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         lbl_cuota.setText(Float.toString(Utilities.getCuota(Integer.parseInt(txt_id.getText()))));
         lbl_ganancia.setText(Utilities.getGanancia(Integer.parseInt(txt_id.getText())));
         lbl_montot.setText(Utilities.getMontot(Integer.parseInt(txt_id.getText())));
-        
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     
@@ -441,6 +445,7 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
         if((cmb_frm_prestamo.getSelectedIndex()+1)==1){
             txt_pagos.setVisible(true);
             lbl_pagos.setVisible(true);
+            txt_pagos.setText("");
         }
     }//GEN-LAST:event_cmb_frm_prestamoActionPerformed
 

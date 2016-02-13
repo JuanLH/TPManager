@@ -8,6 +8,7 @@ package form;
 import clases.Mensajes;
 import clases.Respuesta;
 import clases.Utilities;
+import clases.coordinates;
 import entidades.Cuenta;
 
 /**
@@ -21,11 +22,15 @@ public class frm_depositar_capital extends javax.swing.JDialog {
      */
     public frm_depositar_capital() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_depositar_capital(java.awt.Dialog parent,boolean modal) {
         super(parent,modal);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

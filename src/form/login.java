@@ -34,6 +34,7 @@ public class login extends javax.swing.JFrame {
         
         setIconImage(icon);
         
+        
     }
 
     

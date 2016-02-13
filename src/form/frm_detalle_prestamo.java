@@ -7,6 +7,8 @@ package form;
 
 import clases.Mensajes;
 import clases.Respuesta;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -28,6 +30,8 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
      */
     public frm_detalle_prestamo() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     
@@ -36,6 +40,8 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
         super(parent,modal);
         initComponents();
         setValores();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
 

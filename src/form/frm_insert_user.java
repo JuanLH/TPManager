@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoUsuario;
 import entidades.User;
@@ -23,7 +24,9 @@ public class frm_insert_user extends javax.swing.JDialog {
     
     int opcion = 0;
     public frm_insert_user() {
-        initComponents();   
+        initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_user(java.awt.Frame parent,boolean modal) {
@@ -31,6 +34,8 @@ public class frm_insert_user extends javax.swing.JDialog {
         initComponents();
         txt_id.setText(Integer.toString(Utilities.getMaxId("usuario")));
         btn_limpiar.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_user(java.awt.Dialog parent,boolean modal) {
@@ -49,6 +54,8 @@ public class frm_insert_user extends javax.swing.JDialog {
         cmb_estado.setSelectedIndex(usuario.getStatus());
         
         opcion = 1;
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

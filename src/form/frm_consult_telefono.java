@@ -8,6 +8,7 @@ package form;
 import clases.Mensajes;
 import clases.Respuesta;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -34,6 +35,8 @@ public class frm_consult_telefono extends javax.swing.JDialog {
      */
     public frm_consult_telefono() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     public frm_consult_telefono(java.awt.Dialog parent,boolean modal) {
         super(parent,modal);
@@ -42,6 +45,8 @@ public class frm_consult_telefono extends javax.swing.JDialog {
         btn_elegir.setEnabled(false);
         btn_elegir_defecto.setEnabled(false);
         DtoTelefono.setId_telefono(0);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
       
         
     }

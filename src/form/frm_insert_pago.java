@@ -9,10 +9,13 @@ import clases.AbstractJasperReports;
 import clases.FileManager;
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dataBase.DB;
 import dto.DtoPrestamo;
 import entidades.Pago;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
@@ -41,6 +44,8 @@ public class frm_insert_pago extends javax.swing.JDialog {
         initComponents();
         txt_id.setText(Integer.toString(Utilities.getMaxId("pago")));
         DatePicker.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
     
@@ -49,6 +54,8 @@ public class frm_insert_pago extends javax.swing.JDialog {
         initComponents();
         txt_id.setText(Integer.toString(Utilities.getMaxId("pago")));
         DatePicker.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

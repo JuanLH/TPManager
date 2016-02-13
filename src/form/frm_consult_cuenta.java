@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import dataBase.DB;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,12 +24,16 @@ public class frm_consult_cuenta extends javax.swing.JDialog {
     public frm_consult_cuenta() {
         initComponents();
         llenar_txt();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_consult_cuenta(java.awt.Frame parent,boolean modal) {
         super(parent,modal);
         initComponents();
         llenar_txt();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public void llenar_txt(){

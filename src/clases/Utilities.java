@@ -9,6 +9,8 @@ import dataBase.DB;
 import entidades.Pago;
 import entidades.TipoPrestamo;
 import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.ResultSet;
@@ -18,6 +20,7 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.tools.DocumentationTool.Location;
 
 /**
  *
@@ -37,7 +40,21 @@ public class Utilities {
         return cnn;
     }
     
+    public static Dimension getScreenSize(){
+       return Toolkit.getDefaultToolkit().getScreenSize();
+    }
     
+    public static coordinates getCenterLocation(javax.swing.JDialog frm){
+        // Determine the new location of the window
+        int w = frm.getSize().width;
+        int h = frm.getSize().height;
+        int x = (getScreenSize().width-w)/2;
+        int y = (getScreenSize().height-h)/2;
+        
+        // Move the window
+        return new coordinates(x,y);
+        
+    }
     
     public static boolean txtVoid(Container  container){
         for(int x=0;x<container.getComponentCount();x++){

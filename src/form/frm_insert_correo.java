@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoCorreo;
 import entidades.Correo;
@@ -29,6 +30,8 @@ public class frm_insert_correo extends javax.swing.JDialog {
         txt_cliente_id.setText(Integer.toString(cliente_id));
         txt_cliente_id.setEnabled(false);
         lbl_buscar.setVisible(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     frm_insert_correo(java.awt.Dialog parent) {
@@ -40,10 +43,14 @@ public class frm_insert_correo extends javax.swing.JDialog {
         txt_cliente_id.setEnabled(false);
         lbl_buscar.setVisible(false);
         txt_correo.setText(DtoCorreo.getCorreo().getCorreo());
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     frm_insert_correo() {
        initComponents();
+       coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**

@@ -7,6 +7,7 @@ package form;
 
 import clases.Mensajes;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import dto.DtoTelefono;
 import entidades.Telefono;
@@ -29,6 +30,8 @@ public class frm_insert_telefono extends javax.swing.JDialog {
         txt_cliente_id.setText(Integer.toString(cliente_id));
         txt_cliente_id.setEnabled(false);
         lbl_buscar.setVisible(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     frm_insert_telefono(java.awt.Dialog parent) {//Construct modify
@@ -44,12 +47,15 @@ public class frm_insert_telefono extends javax.swing.JDialog {
         txt_numero.setText(DtoTelefono.getTelefono().getNumero());
         txtA_comentario.setText(DtoTelefono.getTelefono().getComentario());
         cmb_estado.setSelectedIndex(DtoTelefono.getTelefono().getEstado());
-        
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         
     }
 
     frm_insert_telefono() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     

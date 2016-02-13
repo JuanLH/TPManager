@@ -10,6 +10,7 @@ import clases.FileManager;
 import clases.Mensajes;
 import clases.Respuesta;
 import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -48,12 +49,18 @@ public class frm_pago_ruta extends javax.swing.JDialog {
     public frm_pago_ruta() {
         initComponents();
         btn_imprimir.setEnabled(false);
+        DatePicker.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_pago_ruta(java.awt.Dialog parent,boolean modal) {
         super(parent,modal);
         initComponents();
         btn_imprimir.setEnabled(false);
+        DatePicker.setEnabled(false);
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
 
     /**
@@ -65,6 +72,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel4 = new javax.swing.JLabel();
         lbl_buscar_idRuta = new javax.swing.JLabel();
         txt_id_ruta = new javax.swing.JTextField();
@@ -145,6 +153,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(rad_fecha_actual);
         rad_fecha_actual.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rad_fecha_actual.setSelected(true);
         rad_fecha_actual.setText("FECHA ACTUAL");
@@ -154,6 +163,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
             }
         });
 
+        buttonGroup1.add(rad_fecha_manual);
         rad_fecha_manual.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         rad_fecha_manual.setText("FECHA MANUAL");
         rad_fecha_manual.addActionListener(new java.awt.event.ActionListener() {
@@ -374,6 +384,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
     private void rad_fecha_manualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rad_fecha_manualActionPerformed
         // TODO add your handling code here:
         DatePicker.setEnabled(true);
+        
     }//GEN-LAST:event_rad_fecha_manualActionPerformed
 
     /**
@@ -416,6 +427,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_salir;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
