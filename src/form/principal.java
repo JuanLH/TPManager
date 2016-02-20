@@ -86,6 +86,7 @@ public class principal extends javax.swing.JFrame {
         bscPrestamo = new javax.swing.JMenuItem();
         bscTPrestamo = new javax.swing.JMenuItem();
         bscRuta = new javax.swing.JMenuItem();
+        bscRuta1 = new javax.swing.JMenuItem();
         jMenu_nuevo = new javax.swing.JMenu();
         insUsuario = new javax.swing.JMenuItem();
         insPrestamo = new javax.swing.JMenuItem();
@@ -94,6 +95,7 @@ public class principal extends javax.swing.JFrame {
         insTPrestamo = new javax.swing.JMenuItem();
         insPago = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        insAbono = new javax.swing.JMenuItem();
         jMenu_usuario = new javax.swing.JMenu();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         jMenu_config = new javax.swing.JMenu();
@@ -197,6 +199,15 @@ public class principal extends javax.swing.JFrame {
         });
         jMenu_buscar.add(bscRuta);
 
+        bscRuta1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bscRuta1.setText("Abonaciones");
+        bscRuta1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bscRuta1ActionPerformed(evt);
+            }
+        });
+        jMenu_buscar.add(bscRuta1);
+
         jMenuBar1.add(jMenu_buscar);
 
         jMenu_nuevo.setText("nuevo");
@@ -257,6 +268,15 @@ public class principal extends javax.swing.JFrame {
         });
         jMenu_nuevo.add(insPago);
         jMenu_nuevo.add(jSeparator1);
+
+        insAbono.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        insAbono.setText("Abono");
+        insAbono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insAbonoActionPerformed(evt);
+            }
+        });
+        jMenu_nuevo.add(insAbono);
 
         jMenuBar1.add(jMenu_nuevo);
         jMenu_nuevo.getAccessibleContext().setAccessibleName("nuevo ");
@@ -437,6 +457,19 @@ public class principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_insUsuario1ActionPerformed
 
+    private void insAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insAbonoActionPerformed
+        // TODO add your handling code here:
+        frm_insert_abono frm = new frm_insert_abono(this, true);
+        frm.setVisible(true);
+        
+    }//GEN-LAST:event_insAbonoActionPerformed
+
+    private void bscRuta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bscRuta1ActionPerformed
+        // TODO add your handling code here:
+        frm_consult_abono frm  = new frm_consult_abono(this, true);
+        frm.setVisible(true);
+    }//GEN-LAST:event_bscRuta1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -477,8 +510,10 @@ public class principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem bscPrestamo;
     private javax.swing.JMenuItem bscRuta;
+    private javax.swing.JMenuItem bscRuta1;
     private javax.swing.JMenuItem bscTPrestamo;
     private javax.swing.JMenuItem bscUsuario;
+    private javax.swing.JMenuItem insAbono;
     private javax.swing.JMenuItem insPago;
     private javax.swing.JMenuItem insPrestamo;
     private javax.swing.JMenuItem insRuta;

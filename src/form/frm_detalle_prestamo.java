@@ -82,7 +82,7 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
         Gson json = new Gson();
         List<Pago> lista = new ArrayList<Pago>(); 
         DefaultTableModel modelo = new DefaultTableModel();
-        String [] col = {"ID","NOMBRE_TIPO_PAGO","ID_TIPO_PAGO","ID_PRESTAMO","CLIENTE","FECHA"};
+        String [] col = {"ID","NOMBRE_TIPO_PAGO","ID_TIPO_PAGO","ID_PRESTAMO","CLIENTE","FECHA","ABONO_USADO"};
         Pago pago = new Pago();
         
         
@@ -106,13 +106,15 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
                 int k;
                 for(Pago p:lista){
                     k=0;
-                    Object [] fila = new Object[6];
+                    Object [] fila = new Object[7];
                     fila[k++]=(Object)p.getId();
                     fila[k++]=(Object)p.getNombre_tpago();
                     fila[k++]=(Object)p.getId_tipo_pago();
                     fila[k++]=(Object)p.getId_prestamo();
                     fila[k++]=(Object)p.getNombre_cliente();
                     fila[k++]=(Object)p.getFecha();
+                    fila[k++]=(Object)p.getAbono_usado();
+                    
                 
                     modelo.addRow(fila);
                 }
@@ -161,7 +163,7 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("CANCELAR");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setName("btn_aceptar"); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -220,7 +222,7 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
 
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton6.setText("ELIMINAR PAGO");
-        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton6.setName("btn_aceptar"); // NOI18N
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +242,7 @@ public class frm_detalle_prestamo extends javax.swing.JDialog {
                         .addComponent(jButton6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()

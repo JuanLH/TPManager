@@ -40,7 +40,8 @@ public class ticket_pago {
     
     private void ln(int cant){
         for(int x=0;x<cant;x++){
-            escp.lineFeed();
+            //escp.lineFeed();
+            System.out.print("\n");
         }
     }
     
@@ -51,10 +52,10 @@ public class ticket_pago {
             print = true;
         }   
         catch(SQLException e){
-            System.out.println("Error BDD ->"+e.getMessage()+"");
+            System.out.println("Error BDD ->"+e.getMessage()+" *----* "+e.getErrorCode()+"");
         }
         
-        if(escp.initialize() && print==true){
+        if(/*escp.initialize() && */print==true){
             print("Everithing ok");
             escp.print("                 A & M                    ");ln(1);
             escp.print("              INVERSIONES                 ");ln(2);
@@ -65,7 +66,18 @@ public class ticket_pago {
             escp.print("-------------RECIBO DE PAGO-------------");ln(1);
             escp.print("ID_PRESTAMO : "+pago.getPrestamo_id()+"");ln(2);
             escp.print("TIPO DE PAGO : "+pago.getPago()+"");ln(2);
-            escp.print("MONTO DEL PAGO : "+pago.getPago_monto()+"");ln(2);
+            
+            if((int)pago.getAbono_usado()>0){
+                Double total_pagar = (Double)pago.getPago_monto() - (int)pago.getAbono_usado();
+                escp.print("ABONO USADO : "+(int)pago.getAbono_usado()+"");ln(2);
+                escp.print("MONTO DEL PAGO : "+total_pagar+"");ln(2);
+            }
+            else{
+                escp.print("MONTO DEL PAGO : "+pago.getPago_monto()+"");ln(2);
+            }
+            
+            
+            
             escp.print("NO.PAGO : "+pago.getCant_pagos()+"/"+pago.getTotal_pagos()+"");ln(2);
             escp.print("-+-+-+-+-+-DATOS DEL CLIENTE-+-+-+-+-+-");ln(1);
             escp.print("NOMBRE.: "+pago.getCliente_nom()+"");ln(2);
@@ -78,14 +90,14 @@ public class ticket_pago {
             escp.print("        FECHA : "+pago.getDate()+"");ln(9);            
             
             
-            escp.formFeed(); //eject paper
+            //escp.formFeed(); //eject paper
         }
         else{
             print("xxx Everithing bad, failed connection xxx");
             
         }
         
-        escp.close();
+        //escp.close();
         print("Print succesfull");
         return print;
     }

@@ -377,6 +377,8 @@ public class frm_insert_pago extends javax.swing.JDialog {
             
                 if(respon.equals("1")){
                     Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
+                    btn_aceptar.setEnabled(false);
+                    /*
                     try {
                         String  path = "reportes\\pago\\pagoReport.jasper";
                         reportePago datasource = new reportePago(Integer.parseInt(txt_id.getText()));
@@ -385,9 +387,9 @@ public class frm_insert_pago extends javax.swing.JDialog {
 
                     } catch (SQLException ex) {
                         Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }*/
 
-                    //report.print(Integer.parseInt(txt_id.getText()));
+                    report.print(Integer.parseInt(txt_id.getText()));
                     this.setVisible(false);
                 }
                 else if(respon.equals("0"))
@@ -437,7 +439,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
         DatePicker.setEnabled(false);
         DatePicker.setDate(null);
         rad_fecha_actual.setSelected(true);
-        
+        btn_aceptar.setEnabled(true);
         
         
                

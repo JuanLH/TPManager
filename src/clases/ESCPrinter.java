@@ -202,7 +202,8 @@ public class ESCPrinter {
     
     
     public void print(String text) {
-        pstream.print(text);
+        //pstream.print(text);
+        System.out.println(text);
     }
  
     

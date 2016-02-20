@@ -16,10 +16,11 @@ import java.sql.SQLException;
  * @author JuanLuis
  */
 public class pagoReportClass {
-    Object prestamo_id,tipo_pago,pago_monto,num_pago,cliente_nombre,cliente_cedula,cliente_telefono,cliente_apellido;
-    int tipo_prestamo,id_cliente,cant_pagos,total_pagos;
+    Object prestamo_id,tipo_pago,num_pago,cliente_nombre,cliente_cedula,cliente_telefono,cliente_apellido;
+    int tipo_prestamo,id_cliente,cant_pagos,total_pagos,abono_usado;
     String cliente_nom,cliente_ape,cliente_cedu,cliente_direccion;
     Date date;
+    Double pago_monto;
     
     
     
@@ -57,17 +58,26 @@ public class pagoReportClass {
         //---Monto del pago
         String s_monto;
         if(Integer.parseInt(this.tipo_pago.toString()) == 1) {
+            //Pago pendiente
             s_monto= "select tipo_prestamo_cuota("+tipo_prestamo+")";
             rs = dbase.execSelect(s_monto);
             rs.next();
-            pago_monto= rs.getObject(1);
+            pago_monto= rs.getDouble(1);
             //System.out.println("Estamos aqui en monto  extra "+pago_monto);
         }
+        else if(Integer.parseInt(this.tipo_pago.toString()) == 4){
+           //Pago final
+            s_monto= "select tipo_prestamo_montot("+tipo_prestamo+")";
+            rs = dbase.execSelect(s_monto);
+            rs.next();
+            pago_monto= rs.getDouble(1);
+        }
         else{
+            //Pago papeleo o mora
             s_monto= "select tipo_prestamo_extra("+tipo_prestamo+")";
             rs = dbase.execSelect(s_monto);
             rs.next();
-            pago_monto= rs.getObject(1); 
+            pago_monto= rs.getDouble(1);
             //System.out.println("Estamos aqui en monto  extra "+pago_monto);
         }
             //System.out.print("tracer "+pago_monto);
@@ -76,6 +86,12 @@ public class pagoReportClass {
         rs = dbase.execSelect(query_fecha);
         rs.next();
         date = rs.getDate(1);
+        
+        
+        String query_abono = "select abono_usado from pago where id="+id_pago+"";
+        rs = dbase.execSelect(query_abono);
+        rs.next();
+        abono_usado = rs.getInt(1);
         rs.close();
         
     }
@@ -116,7 +132,7 @@ public class pagoReportClass {
         return pago;
     }
 
-    public Object getPago_monto() {
+    public Double getPago_monto() {
         return pago_monto;
     }
 
@@ -200,8 +216,10 @@ public class pagoReportClass {
         return date;
     }
 
+    public Object getAbono_usado() {
+        return abono_usado;
+    }
     
-    
-    
+      
     
 }

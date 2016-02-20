@@ -178,12 +178,27 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         buttonGroup1.add(radPendiente);
         radPendiente.setSelected(true);
         radPendiente.setText("PENDIENTE");
+        radPendiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radPendienteActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radTodos);
         radTodos.setText("TODOS");
+        radTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radTodosActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(radPagados);
         radPagados.setText("PAGADOS");
+        radPagados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radPagadosActionPerformed(evt);
+            }
+        });
 
         lbl_buscar_tPrestamo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/lupa.png"))); // NOI18N
         lbl_buscar_tPrestamo.setToolTipText("");
@@ -439,7 +454,8 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         btn_modificar.setEnabled(true);
         btn_ver.setEnabled(true);
         btn_elegir.setEnabled(true);
-        btn_eliminar.setEnabled(true);
+        if(radPendiente.isSelected())
+            btn_eliminar.setEnabled(true);
         
         /*id = (int)client_table.getModel().getValueAt(client_table.getSelectedRow(), 0);
         btn_add.setEnabled(true);*/
@@ -489,6 +505,11 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
             else if(respon.equals("-2")){
                 Mensajes.mensajeInfo(evt,"NO ESTA PERMITIDO ELIMINAR ESTE PRESTAMO\nPORQUE YA FUE SALDADO");
             }
+            else if(respon.equals("2")){
+                
+                Mensajes.mensajeInfo(evt, "EL DINERO EN ABONO DEBE SER IGUAL A 0\nPARA ELIMINAR EL PRESTAMO");
+            
+            }
             else{
                 Mensajes.mensajeError(evt, respon);
             }
@@ -499,6 +520,21 @@ public class frm_consult_prestamo extends javax.swing.JDialog {
         }
         
     }//GEN-LAST:event_btn_eliminarActionPerformed
+
+    private void radPagadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPagadosActionPerformed
+        // TODO add your handling code here:
+        btn_eliminar.setEnabled(false);
+    }//GEN-LAST:event_radPagadosActionPerformed
+
+    private void radTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radTodosActionPerformed
+        // TODO add your handling code here:
+        btn_eliminar.setEnabled(false);
+    }//GEN-LAST:event_radTodosActionPerformed
+
+    private void radPendienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radPendienteActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_radPendienteActionPerformed
 
     /**
      * @param args the command line arguments

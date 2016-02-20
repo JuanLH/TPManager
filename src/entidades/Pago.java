@@ -20,9 +20,10 @@ import java.util.ArrayList;
  * @author JuanLuis
  */
 public class Pago {
-    int  id ,id_tipo_pago,id_prestamo,tipo_prestamo;
+    int  id ,id_tipo_pago,id_prestamo,tipo_prestamo,abono_usado;
     String nombre_cliente,nombre_tpago;
     Date fecha;
+
     /*------------------------------------------------------------*/
     String tipo_pago_nombre;
     int monto_prestamo,cantidad_pago_prestamo;
@@ -45,6 +46,15 @@ public class Pago {
 
     public void setTipo_prestamo(int tipo_prestamo) {
         this.tipo_prestamo = tipo_prestamo;
+    }
+    
+    
+    public int getAbono_usado() {
+        return abono_usado;
+    }
+
+    public void setAbono_usado(int abono_usado) {
+        this.abono_usado = abono_usado;
     }
     
     
@@ -315,7 +325,8 @@ public class Pago {
         ArrayList<Pago> lista = new ArrayList<Pago>();
         float ganancia_acum = 0;
         String query = "SELECT p.id, (select tp.tipo from tipo_pago as tp where tp.id = id_tipo_pago), id_tipo_pago,id_prestamo,";
-        query += "(select nombre from cliente as c where c.id = (select cliente_id from prestamo as pre where pre.id = "+id_prestamo+")), p.fecha ";
+        query += "(select nombre from cliente as c where c.id = (select cliente_id from prestamo as pre where pre.id = "+id_prestamo+")), p.fecha, ";
+        query +="p.abono_usado ";
         query += "FROM pago as p where p.id_prestamo="+id_prestamo+";";
         System.out.println(query);
         try{
@@ -329,6 +340,7 @@ public class Pago {
                 pago.setId_prestamo(rs.getInt(4));
                 pago.setNombre_cliente(rs.getString(5));
                 pago.setFecha(rs.getDate(6));
+                pago.setAbono_usado(rs.getInt(7));
                 lista.add(pago);
                 
             }
