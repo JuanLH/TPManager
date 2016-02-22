@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b47aea81-ad8b-4d02-9e89-17126639639c">
-	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="59"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="fecha" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="id_prestamo" class="java.lang.String"/>
+	<field name="forma_prestamo" class="java.lang.String"/>
+	<field name="nombre_cliente" class="java.lang.String"/>
+	<field name="telefono_cliente" class="java.lang.String"/>
+	<field name="monto_prestamo" class="java.lang.String"/>
+	<field name="pagos" class="java.lang.String"/>
+	<field name="monto_pago" class="java.lang.String"/>
+	<field name="monto_pendiente" class="java.lang.String"/>
+	<field name="mon_pen_acum" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="58" splitType="Stretch">
+		<band height="80" splitType="Stretch">
 			<staticText>
 				<reportElement x="282" y="0" width="229" height="29" uuid="d8c36084-8283-4488-aecf-25a99292fdf2"/>
 				<textElement textAlignment="Center">
@@ -22,32 +35,141 @@
 				</textElement>
 				<text><![CDATA[REPORTE DE PRESTAMOS ACTIVOS]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="440" y="60" width="97" height="20" uuid="b0dc21d4-51c8-4e3b-9e66-e5d6b2256b44"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$P{fecha}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="278" y="60" width="162" height="20" uuid="c3120e44-d006-4b86-98ec-e995b42ab6bb"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[EMITIDO PARA LA FECHA  DE :]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="28" splitType="Stretch">
-			<staticText>
-				<reportElement x="192" y="0" width="406" height="27" uuid="7e778890-8d16-49b9-ab6c-b2dd32e70559"/>
-				<textElement textAlignment="Center">
-					<font size="18" isBold="false" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[LISTADO DE PRESTAMOS ACTIVOS]]></text>
-			</staticText>
-		</band>
+		<band height="15" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="1" width="58" height="20" uuid="61b7d5c0-cdeb-4d9c-8ef4-6f0d16f50988"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="1" width="78" height="20" uuid="963e1174-7d95-4334-b07b-55c6981ae921"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[FORMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="158" y="1" width="124" height="20" uuid="4407860a-d736-46a1-9ebd-521b5fb5ceea"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="1" width="76" height="20" uuid="a5c29b84-cd07-43fa-b314-c15a9cda50ea"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="363" y="1" width="77" height="20" uuid="94ede374-6932-4914-8470-be16de64b4e7"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="1" width="71" height="20" uuid="ca90f55f-8316-4a21-853b-b88c1dabcf1e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PAGOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="517" y="1" width="77" height="20" uuid="11e5374a-c3f0-4f1f-8ca3-37468f23e05c"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[MONTO_PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="605" y="1" width="83" height="20" uuid="a5e0322c-11b5-4d0d-9800-f6b8e91709a5"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PENDIENTE]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="19" width="802" height="1" uuid="a86b5ecb-b16c-4ef9-ac3e-a8559d50bdd9"/>
+			</line>
+			<staticText>
+				<reportElement x="702" y="1" width="100" height="20" uuid="a308ce28-0329-4e2c-a385-0ccbc68d224a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ACUMULADO]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="10" width="80" height="20" uuid="3dee0aad-1bea-44ef-971d-defb83896253"/>
+				<textFieldExpression><![CDATA[$F{id_prestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="80" y="10" width="78" height="20" uuid="1a9f558a-6521-4ed1-a7c1-017951cc12e1"/>
+				<textFieldExpression><![CDATA[$F{forma_prestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="158" y="11" width="124" height="20" uuid="04b1cb84-1d9b-4761-ad84-b991d9502c1d"/>
+				<textFieldExpression><![CDATA[$F{nombre_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="282" y="10" width="76" height="20" uuid="ed6dcc31-003d-4801-9d18-7d8662df9f3e"/>
+				<textFieldExpression><![CDATA[$F{telefono_cliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="363" y="10" width="77" height="20" uuid="f6d66194-1948-4bec-bb25-0dea2aefe597"/>
+				<textFieldExpression><![CDATA[$F{monto_prestamo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="440" y="10" width="71" height="20" uuid="10d26720-12f0-4c8f-b5eb-89dd91cc1e44"/>
+				<textFieldExpression><![CDATA[$F{pagos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="517" y="10" width="66" height="20" uuid="f9feee3a-f8b5-478a-bba7-77cbe9c73cf5"/>
+				<textFieldExpression><![CDATA[$F{monto_pago}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="605" y="10" width="83" height="20" uuid="8835bb1d-4ae6-4fbd-9cd8-d9496baea2c3"/>
+				<textFieldExpression><![CDATA[$F{monto_pendiente}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="802" height="1" uuid="d1ce1ce0-7694-4acd-9584-b97b96acc67b"/>
+			</line>
+			<textField>
+				<reportElement x="702" y="10" width="100" height="20" uuid="ff0d569b-4e33-45b7-8df0-ec393e0fc35f"/>
+				<textFieldExpression><![CDATA[$F{mon_pen_acum}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="11" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="54" splitType="Stretch"/>
+		<band height="9" splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="9" splitType="Stretch"/>
 	</summary>
 </jasperReport>

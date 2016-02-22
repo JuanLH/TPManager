@@ -4,6 +4,7 @@ package clases;
 import java.awt.Dialog;
 import java.sql.Connection;
 import java.util.Locale;
+import java.util.Map;
 import net.sf.jasperreports.engine.JRDataSource;
 
 import net.sf.jasperreports.engine.JasperReport;
@@ -21,11 +22,22 @@ public abstract class AbstractJasperReports
     private static JasperViewer viewer;
     
 
-    public static void createReport( Connection conn, String path )
+    public static void createReport( Connection conn, String path,Map parametros )
     {
         try {
             report = (JasperReport) JRLoader.loadObjectFromFile( path );
-            reportFilled = JasperFillManager.fillReport( report,null,conn );
+            reportFilled = JasperFillManager.fillReport( report,parametros,conn );
+        }
+        catch( JRException ex ) {
+            ex.printStackTrace();
+        }
+    }
+    
+    public static void createReport(JRDataSource conn, String path,Map parametros )
+    {
+        try {
+            report = (JasperReport) JRLoader.loadObjectFromFile(path);
+            reportFilled = JasperFillManager.fillReport(report, parametros, conn);
         }
         catch( JRException ex ) {
             ex.printStackTrace();
@@ -42,7 +54,6 @@ public abstract class AbstractJasperReports
             ex.printStackTrace();
         }
     }
-    
     public static void showViewer()
     {
         viewer = new JasperViewer(reportFilled,false);

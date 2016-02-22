@@ -357,7 +357,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
         }
         else
         {  
-            if(true) {
+            if(report.test_stream()) {
                 Pago pago = new Pago();
                 pago.setId(Integer.parseInt(txt_id.getText()));
                 pago.setId_tipo_pago(cmb_tpago.getSelectedIndex()+1);
@@ -378,17 +378,6 @@ public class frm_insert_pago extends javax.swing.JDialog {
                 if(respon.equals("1")){
                     Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
                     btn_aceptar.setEnabled(false);
-                    /*
-                    try {
-                        String  path = "reportes\\pago\\pagoReport.jasper";
-                        reportePago datasource = new reportePago(Integer.parseInt(txt_id.getText()));
-                        AbstractJasperReports.createReport(datasource, path);
-                        AbstractJasperReports.showViewer();
-
-                    } catch (SQLException ex) {
-                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
-
                     report.print(Integer.parseInt(txt_id.getText()));
                     this.setVisible(false);
                 }

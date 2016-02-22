@@ -19,7 +19,7 @@ public class ESCPrinter {
             pstream.close();
             ostream.close();
         }   
-        catch (IOException e) { e.printStackTrace(); }
+        catch (IOException e) { e.getMessage(); }
     }
     public boolean initialize() {
         //post: returns true iff stream to network printer successfully opened, streams for writing to esc/p printer created
@@ -202,8 +202,8 @@ public class ESCPrinter {
     
     
     public void print(String text) {
-        //pstream.print(text);
-        System.out.println(text);
+        pstream.print(text);
+        //System.out.println(text);
     }
  
     

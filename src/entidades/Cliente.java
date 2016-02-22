@@ -266,6 +266,60 @@ public class Cliente {
      }
      
      
+     public static String getCliente_nombre(int id_cliente){
+        DB dbase = Utilities.getConection();
+        String query = "SELECT  nombre FROM cliente where id = "+id_cliente+";";
+        try{
+            ResultSet rs=dbase.execSelect(query);
+            rs.next();
+            String nombre = rs.getString(1);
+            rs.close();
+            return nombre;
+        }
+        catch(SQLException e){
+            System.out.println("Error de bases "+e.getMessage());
+            return "error";
+            
+        }
+     }
+     
+     public static String getCliente_apellido(int id_cliente){
+        DB dbase = Utilities.getConection();
+        String query = "SELECT  apellido FROM cliente where id = "+id_cliente+";";
+        try{
+            ResultSet rs=dbase.execSelect(query);
+            rs.next();
+            String apellido = rs.getString(1);
+            rs.close();
+            return apellido;
+        }
+        catch(SQLException e){
+            System.out.println("Error de bases "+e.getMessage());
+            return "error";
+            
+        }
+     }
+     
+     public static String getCliente_telefono(int id_cliente){
+        DB dbase = Utilities.getConection();
+        String query = "SELECT  numero FROM telefono where cliente_id ="+id_cliente+";";
+        try{
+            ResultSet rs=dbase.execSelect(query);
+            rs.next();
+            String tel = rs.getString(1);
+            rs.close();
+            return tel;
+        }
+        catch(SQLException e){
+            System.out.println("Error de bases "+e.getMessage());
+            return "error";
+            
+        }
+     }
+     
+     
+
+     
         
          
 };

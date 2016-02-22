@@ -23,11 +23,11 @@ public class ticket_pago {
     
     public boolean test_stream(){
         if(escp.initialize()){
-            
-            return true;}
+            return true;
+        }
         else{
-            
-            return false;}
+            return false;
+        }
         
         
         
@@ -40,8 +40,8 @@ public class ticket_pago {
     
     private void ln(int cant){
         for(int x=0;x<cant;x++){
-            //escp.lineFeed();
-            System.out.print("\n");
+            escp.lineFeed();
+            //System.out.print("\n");
         }
     }
     
@@ -55,13 +55,13 @@ public class ticket_pago {
             System.out.println("Error BDD ->"+e.getMessage()+" *----* "+e.getErrorCode()+"");
         }
         
-        if(/*escp.initialize() && */print==true){
+        if(escp.initialize() && print==true){
             print("Everithing ok");
             escp.print("                 A & M                    ");ln(1);
             escp.print("              INVERSIONES                 ");ln(2);
             /*                        TELEFONOS       Pondria aqui           */
             escp.print("     809-316-6252 & 849-656-8481          ");ln(1);
-            escp.print("             849-209-0001");ln(2);
+            escp.print("     829-304-6252 & 849-209-0001          ");ln(2);
             
             escp.print("-------------RECIBO DE PAGO-------------");ln(1);
             escp.print("ID_PRESTAMO : "+pago.getPrestamo_id()+"");ln(2);
@@ -90,14 +90,14 @@ public class ticket_pago {
             escp.print("        FECHA : "+pago.getDate()+"");ln(9);            
             
             
-            //escp.formFeed(); //eject paper
+            escp.formFeed(); //eject paper
         }
         else{
             print("xxx Everithing bad, failed connection xxx");
             
         }
         
-        //escp.close();
+        escp.close();
         print("Print succesfull");
         return print;
     }

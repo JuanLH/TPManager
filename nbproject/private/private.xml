@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/entidades/pagoReportClass.java</file>
-            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/form/frm_insert_pago.java</file>
-            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/reportes/pago/ticket_pago.java</file>
-            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/clases/ESCPrinter.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/form/principal.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/reportes/prestamo_activo/prestamo.jrxml</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/entidades/Cliente.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/form/frm_pago_ruta.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/reportes/prestamo_activo/reportePrestamoActivo.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/clases/AbstractJasperReports.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/entidades/TipoPrestamo.java</file>
+            <file>file:/L:/Proyects/Programacion/Java/NetBeans/TPManager2/src/entidades/Prestamo.java</file>
         </group>
     </open-files>
 </project-private>

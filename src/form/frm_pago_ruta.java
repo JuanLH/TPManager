@@ -280,7 +280,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
                         Mensajes.mensajeInfo(evt, "SE AGREGARON EXITOSAMENTE ");
                 
                     
-                    try {
+                   /* try {
                         String  path = "reportes\\pago\\pagoReport.jasper";
                         reportePago datasource = new reportePago(p.getId());
                         AbstractJasperReports.createReport(datasource, path);
@@ -289,7 +289,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
                 
                     } catch (SQLException ex) {
                         Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }*/
                     
                 
                 //report.print(p.getId());

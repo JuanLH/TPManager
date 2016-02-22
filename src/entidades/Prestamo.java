@@ -310,6 +310,20 @@ public class Prestamo {
         }
     }
     
-    
+    public static int getMonto_pendiente(int id_prestamo){
+        DB dbase = Utilities.getConection();
+        String query = "SELECT get_monto_restante("+id_prestamo+");";
+        try{
+            ResultSet rs = dbase.execSelect(query);
+            rs.next();
+            int pendiente = rs.getInt(1);
+            rs.close();
+            return pendiente;
+        }
+        catch(SQLException e){
+            System.out.println("Error database "+e.getMessage() );
+            return -1;
+        }
+    }
     
 }

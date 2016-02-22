@@ -331,11 +331,6 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
                     String respon = prestamo.insertar_Prestamo(json.toJson(prestamo));
                     if(respon.equals("1")){
                         Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
-                        
-                        /*String  path = "reportes\\prestamo\\prestamoReport.jasper";
-                        reportePrestamo datasource = new reportePrestamo(Integer.parseInt(txt_id.getText()), Integer.parseInt(txt_id_cliente.getText()));
-                        AbstractJasperReports.createReport(datasource, path);
-                        AbstractJasperReports.showViewer();*/
                     }
                     
                     else if(respon.equals("2"))
