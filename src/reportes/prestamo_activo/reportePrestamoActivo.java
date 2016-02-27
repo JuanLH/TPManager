@@ -30,7 +30,8 @@ public class reportePrestamoActivo implements JRDataSource {
     static boolean val=false;
     
     public reportePrestamoActivo() throws SQLException {
-        monto_pendiente_acum=count = 0;
+        monto_pendiente_acum= 0;
+        count= -1;
         val = false;
         prestamos = new ArrayList();
         DB dbase = Utilities.getConection();
@@ -72,6 +73,7 @@ public class reportePrestamoActivo implements JRDataSource {
         
         while(count<size-1){
             if(!val){
+                count++;
                 val = true;
                 return true;
             }
