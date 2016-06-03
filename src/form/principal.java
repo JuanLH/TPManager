@@ -10,6 +10,7 @@ import clases.FileManager;
 import clases.Mensajes;
 import clases.Utilities;
 import dto.DtoUsuario;
+import java.awt.Color;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
@@ -22,6 +23,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import reportes.prestamo_activo.Report_Prestamo_Activo;
 import reportes.prestamo_activo.reportePrestamoActivo;
 
 /**
@@ -100,7 +102,7 @@ public class principal extends javax.swing.JFrame {
         insPago = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         insAbono = new javax.swing.JMenuItem();
-        jMenu_config1 = new javax.swing.JMenu();
+        reportOption = new javax.swing.JMenu();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         showReportPrestamosActivos = new javax.swing.JMenuItem();
         jMenu_usuario = new javax.swing.JMenu();
@@ -285,18 +287,18 @@ public class principal extends javax.swing.JFrame {
         jMenuBar1.add(jMenu_nuevo);
         jMenu_nuevo.getAccessibleContext().setAccessibleName("nuevo ");
 
-        jMenu_config1.setText("Reportes");
-        jMenu_config1.setFocusable(false);
-        jMenu_config1.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
-        jMenu_config1.addMouseListener(new java.awt.event.MouseAdapter() {
+        reportOption.setText("Reportes");
+        reportOption.setFocusable(false);
+        reportOption.setFont(new java.awt.Font("Calibri", 0, 24)); // NOI18N
+        reportOption.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu_config1MouseClicked(evt);
+                reportOptionMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                jMenu_config1MousePressed(evt);
+                reportOptionMousePressed(evt);
             }
         });
-        jMenu_config1.add(jSeparator4);
+        reportOption.add(jSeparator4);
 
         showReportPrestamosActivos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         showReportPrestamosActivos.setText("Prestamos Activos");
@@ -305,9 +307,9 @@ public class principal extends javax.swing.JFrame {
                 showReportPrestamosActivosActionPerformed(evt);
             }
         });
-        jMenu_config1.add(showReportPrestamosActivos);
+        reportOption.add(showReportPrestamosActivos);
 
-        jMenuBar1.add(jMenu_config1);
+        jMenuBar1.add(reportOption);
 
         jMenu_usuario.setText("cambiar usuario");
         jMenu_usuario.setFocusable(false);
@@ -450,31 +452,21 @@ public class principal extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_bscRuta1ActionPerformed
 
-    private void jMenu_config1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu_config1MouseClicked
+    private void reportOptionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportOptionMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu_config1MouseClicked
+    }//GEN-LAST:event_reportOptionMouseClicked
 
-    private void jMenu_config1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu_config1MousePressed
+    private void reportOptionMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_reportOptionMousePressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu_config1MousePressed
+    }//GEN-LAST:event_reportOptionMousePressed
 
     private void showReportPrestamosActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReportPrestamosActivosActionPerformed
         // TODO add your handling code here:
+        Report_Prestamo_Activo report = new Report_Prestamo_Activo();
+        Thread report_pActivos = new Thread(report);
+        report_pActivos.start();
+       
         
-                    try {
-                        //String  path = "L:\\Proyects\\Programacion\\Java\\NetBeans\\TPManager2\\src\\reportes\\prestamo_activo\\prestamo.jasper";
-                        String  path = "src\\reportes\\prestamo_activo\\prestamo.jasper";
-                        reportePrestamoActivo datasource = new reportePrestamoActivo();
-                        Map parametros = new HashMap();
-                        parametros.put("fecha",Utilities.getCurrentDate().toString());
-                        AbstractJasperReports.createReport(datasource, path,parametros);
-                        AbstractJasperReports.showViewer();
-
-                    } catch (SQLException ex) {
-                        Mensajes.mensajeError(evt, "OCURRIO UN ERROR PRESENTANDO EL REPORTE");
-                        System.out.println("Error BDD *** XXXX"+ex.getMessage());
-                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }
     }//GEN-LAST:event_showReportPrestamosActivosActionPerformed
 
     /**
@@ -537,7 +529,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu jMenu_buscar;
-    private javax.swing.JMenu jMenu_config1;
     private javax.swing.JMenu jMenu_nuevo;
     private javax.swing.JMenu jMenu_principal;
     private javax.swing.JMenu jMenu_usuario;
@@ -548,6 +539,8 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem menu_cuenta;
     private javax.swing.JMenuItem menu_cuenta1;
+    private javax.swing.JMenu reportOption;
     private javax.swing.JMenuItem showReportPrestamosActivos;
     // End of variables declaration//GEN-END:variables
+
 }
