@@ -176,8 +176,8 @@ public class TipoPrestamo {
          
      }
     
-    public static String getFormaPrestamo(int id_tipo_prestamo){
-        DB dbase = Utilities.getConection();
+    public static String getFormaPrestamo(int id_tipo_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "select descripcion from forma_prestamo where id = (select forma_prestamo_id from tipo_prestamo where id="+id_tipo_prestamo+");";
         try{
             ResultSet rs = dbase.execSelect(query);
@@ -194,8 +194,8 @@ public class TipoPrestamo {
         
     }
     
-    public static int getMonto_total(int id_tipo_prestamo){
-        DB dbase = Utilities.getConection();
+    public static int getMonto_total(int id_tipo_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT tipo_prestamo_montot("+id_tipo_prestamo+");";
         try{
             ResultSet rs = dbase.execSelect(query);
@@ -210,8 +210,8 @@ public class TipoPrestamo {
         }  
     }
     
-    public static int getpagos(int id_tipo_prestamo){
-        DB dbase = Utilities.getConection();
+    public static int getpagos(int id_tipo_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT  pagos FROM tipo_prestamo where id= "+id_tipo_prestamo+";";
         try{
             ResultSet rs = dbase.execSelect(query);
@@ -228,8 +228,8 @@ public class TipoPrestamo {
         
     }
     
-    public static int getpagos_realizados(int id_tipo_prestamo){
-        DB dbase = Utilities.getConection();
+    public static int getpagos_realizados(int id_tipo_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT count_pagos("+id_tipo_prestamo+",1);";
         try{
             ResultSet rs = dbase.execSelect(query);
@@ -246,8 +246,8 @@ public class TipoPrestamo {
         
     }
 
-    public static int getmonto_cuota(int id_tipo_prestamo){
-        DB dbase = Utilities.getConection();
+    public static int getmonto_cuota(int id_tipo_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT tipo_prestamo_cuota("+id_tipo_prestamo+");";
         try{
             ResultSet rs = dbase.execSelect(query);

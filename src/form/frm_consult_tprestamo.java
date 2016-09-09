@@ -33,6 +33,7 @@ public class frm_consult_tprestamo extends javax.swing.JDialog {
         coordinates point = Utilities.getCenterLocation(this);
         this.setLocation(point.getX(), point.getY());
     }
+    
     public frm_consult_tprestamo(java.awt.Dialog parent, boolean modal) {
         super(parent,modal);
         initComponents();

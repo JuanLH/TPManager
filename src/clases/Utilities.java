@@ -31,7 +31,7 @@ public class Utilities {
     private static Connection cnn = null;
     
     public static DB getConection(){
-        DB dbase = new DB("DB_TPManager","postgres","JuanLH@19");
+        DB dbase = new DB("TPManager","postgres","JuanLH@20");
         cnn = dbase.getConection();
         return dbase;
     }

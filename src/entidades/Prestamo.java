@@ -310,8 +310,8 @@ public class Prestamo {
         }
     }
     
-    public static int getMonto_pendiente(int id_prestamo){
-        DB dbase = Utilities.getConection();
+    public static int getMonto_pendiente(int id_prestamo,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT get_monto_restante("+id_prestamo+");";
         try{
             ResultSet rs = dbase.execSelect(query);

@@ -266,8 +266,8 @@ public class Cliente {
      }
      
      
-     public static String getCliente_nombre(int id_cliente){
-        DB dbase = Utilities.getConection();
+     public static String getCliente_nombre(int id_cliente,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT  nombre FROM cliente where id = "+id_cliente+";";
         try{
             ResultSet rs=dbase.execSelect(query);
@@ -283,8 +283,8 @@ public class Cliente {
         }
      }
      
-     public static String getCliente_apellido(int id_cliente){
-        DB dbase = Utilities.getConection();
+     public static String getCliente_apellido(int id_cliente,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT  apellido FROM cliente where id = "+id_cliente+";";
         try{
             ResultSet rs=dbase.execSelect(query);
@@ -300,8 +300,8 @@ public class Cliente {
         }
      }
      
-     public static String getCliente_telefono(int id_cliente){
-        DB dbase = Utilities.getConection();
+     public static String getCliente_telefono(int id_cliente,DB dbase){
+        //DB dbase = Utilities.getConection();
         String query = "SELECT  numero FROM telefono where cliente_id ="+id_cliente+";";
         try{
             ResultSet rs=dbase.execSelect(query);

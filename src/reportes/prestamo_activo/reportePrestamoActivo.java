@@ -40,20 +40,20 @@ public class reportePrestamoActivo implements JRDataSource {
         
         
         while(rs.next()){
-          prestamoActivoReportClass prestamo =new prestamoActivoReportClass();
+          prestamoActivoReportClass prestamo = new prestamoActivoReportClass();
           int id_prestamo=rs.getInt(1);
           int id_tipo_prestamo = rs.getInt(2);
           int id_cliente = rs.getInt(3);
           
           prestamo.setId_prestamo(id_prestamo);
-          prestamo.setForma_prestamo(TipoPrestamo.getFormaPrestamo(id_tipo_prestamo));
-          prestamo.setNombre_cliente(Cliente.getCliente_nombre(id_cliente)+" "+Cliente.getCliente_apellido(id_cliente));
-          prestamo.setTelefono_cliente(Cliente.getCliente_telefono(id_cliente));
-          prestamo.setMonto_prestamo(TipoPrestamo.getMonto_total(id_tipo_prestamo));
-          prestamo.setPagos(TipoPrestamo.getpagos_realizados(id_prestamo)+" / "+TipoPrestamo.getpagos(id_tipo_prestamo));
-          prestamo.setMonto_pago(TipoPrestamo.getmonto_cuota(id_tipo_prestamo));
-          prestamo.setMonto_pendiente(Prestamo.getMonto_pendiente(id_prestamo));
-          monto_pendiente_acum += Prestamo.getMonto_pendiente(id_prestamo);
+          prestamo.setForma_prestamo(TipoPrestamo.getFormaPrestamo(id_tipo_prestamo,dbase));
+          prestamo.setNombre_cliente(Cliente.getCliente_nombre(id_cliente,dbase)+" "+Cliente.getCliente_apellido(id_cliente,dbase));
+          prestamo.setTelefono_cliente(Cliente.getCliente_telefono(id_cliente,dbase));
+          prestamo.setMonto_prestamo(TipoPrestamo.getMonto_total(id_tipo_prestamo,dbase));
+          prestamo.setPagos(TipoPrestamo.getpagos_realizados(id_prestamo,dbase)+" / "+TipoPrestamo.getpagos(id_tipo_prestamo,dbase));
+          prestamo.setMonto_pago(TipoPrestamo.getmonto_cuota(id_tipo_prestamo,dbase));
+          prestamo.setMonto_pendiente(Prestamo.getMonto_pendiente(id_prestamo,dbase));
+          monto_pendiente_acum += Prestamo.getMonto_pendiente(id_prestamo,dbase);
           prestamo.setMonto_pen_acum(monto_pendiente_acum);
           prestamos.add(prestamo);
           

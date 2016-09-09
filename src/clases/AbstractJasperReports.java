@@ -2,6 +2,7 @@ package clases;
 
 
 import java.awt.Dialog;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Locale;
 import java.util.Map;
@@ -22,10 +23,10 @@ public abstract class AbstractJasperReports
     private static JasperViewer viewer;
     
 
-    public static void createReport( Connection conn, String path,Map parametros )
+    public static void createReport( Connection conn, InputStream path,Map parametros )
     {
         try {
-            report = (JasperReport) JRLoader.loadObjectFromFile( path );
+            report = (JasperReport) JRLoader.loadObject(path);
             reportFilled = JasperFillManager.fillReport( report,parametros,conn );
         }
         catch( JRException ex ) {
@@ -33,10 +34,10 @@ public abstract class AbstractJasperReports
         }
     }
     
-    public static void createReport(JRDataSource conn, String path,Map parametros )
+    public static void createReport(JRDataSource conn, InputStream path,Map parametros )
     {
         try {
-            report = (JasperReport) JRLoader.loadObjectFromFile(path);
+            report = (JasperReport) JRLoader.loadObject(path);
             reportFilled = JasperFillManager.fillReport(report, parametros, conn);
         }
         catch( JRException ex ) {
