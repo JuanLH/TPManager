@@ -42,7 +42,6 @@ public class frm_consult_client extends javax.swing.JDialog {
     
     public frm_consult_client(java.awt.Frame parent,boolean modal){
         super(parent,modal);
-        
         initComponents();
         coordinates point = Utilities.getCenterLocation(this);
         this.setLocation(point.getX(), point.getY());

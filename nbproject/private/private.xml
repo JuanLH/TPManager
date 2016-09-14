@@ -4,6 +4,10 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group/>
         <group name="Proyecto I">
+            <file>file:/home/juanlht/NetBeansProjects/TPManager/src/form/frm_consult_gasto.java</file>
+            <file>file:/home/juanlht/NetBeansProjects/TPManager/src/form/frm_dialog_motivo.java</file>
+            <file>file:/home/juanlht/NetBeansProjects/TPManager/src/entidades/Gastos.java</file>
+            <file>file:/home/juanlht/NetBeansProjects/TPManager/src/form/frm_consult_prestamo.java</file>
             <file>file:/home/juanlht/NetBeansProjects/TPManager/src/form/principal.java</file>
         </group>
     </open-files>

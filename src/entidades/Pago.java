@@ -217,6 +217,7 @@ public class Pago {
         }
         return respon;
     }
+    
     public String eliminar_pago(int id_pago){
         
         DB dbase = Utilities.getConection();
@@ -240,6 +241,7 @@ public class Pago {
         }
         
     }
+    
     public String get_query_pago(){
         String query = "select p.id,";
         query +="p.fecha,";
@@ -253,6 +255,7 @@ public class Pago {
         query +="from pago as p";
         return query;
     }
+    
     public String get_query_pago(int id_prestamo){
         String query = "select p.id,";
         query +="p.fecha,";
@@ -266,6 +269,7 @@ public class Pago {
         query +="from pago as p where id_prestamo="+id_prestamo+"";
         return query;
     } 
+    
     public String get_query_pago(int id_prestamo , Date d1, Date d2){
         String query = "select p.id,";
         query +="p.fecha,";
@@ -279,6 +283,7 @@ public class Pago {
         query +="from pago as p where id_prestamo="+id_prestamo+" and p.fecha >= '"+d1.getYear()+"-"+(d1.getMonth()+1)+"-"+d1.getDate()+"' and p.fecha <= '"+d2.getYear()+"-"+(d2.getMonth()+1)+"-"+d2.getDate()+"'";
         return query;
     } 
+    
     public String get_query_pago(String id_cliente){
         String query = "select p.id,";
         query +="p.fecha,";
@@ -292,6 +297,7 @@ public class Pago {
         query +="from pago as p where "+id_cliente+" = (select p.cliente_id from  prestamo  as p  where p.id = id_prestamo);";
         return query;
     }
+    
     public String get_query_pago(String id_cliente,Date d1,Date d2){
         String query = "select p.id,";
         query +="p.fecha,";
@@ -305,6 +311,7 @@ public class Pago {
         query +="from pago as p where "+id_cliente+" = (select p.cliente_id from  prestamo  as p  where p.id = id_prestamo) and p.fecha >= '"+d1.getYear()+"-"+(d1.getMonth()+1)+"-"+d1.getDate()+"' and p.fecha <= '"+d2.getYear()+"-"+(d2.getMonth()+1)+"-"+d2.getDate()+"'";
         return query;
     }
+    
     public String get_query_pago(Date d1,Date d2){
          String query = "select p.id,";
         query +="p.fecha,";
@@ -410,6 +417,7 @@ public class Pago {
         dbase.CerrarConexion();
         return respon.ToJson(respon); 
     }
+    
     public String consultar_pago(int id_prestamo){
         Respuesta respon  = new Respuesta();
         DB dbase = Utilities.getConection();
@@ -454,6 +462,7 @@ public class Pago {
         return respon.ToJson(respon); 
         
     }    
+    
     public String consultar_pago(int id_prestamo,Date d1,Date d2){
         Respuesta respon  = new Respuesta();
         DB dbase = Utilities.getConection();
@@ -498,6 +507,7 @@ public class Pago {
         return respon.ToJson(respon); 
         
     }
+    
     public String consultar_pago(String id_cliente){
         Respuesta respon  = new Respuesta();
         DB dbase = Utilities.getConection();
@@ -544,6 +554,7 @@ public class Pago {
         return respon.ToJson(respon); 
         
     }   
+    
     public String consultar_pago(String id_cliente,Date d1,Date d2){
         Respuesta respon  = new Respuesta();
         DB dbase = Utilities.getConection();
@@ -590,6 +601,7 @@ public class Pago {
         return respon.ToJson(respon); 
         
     }    
+    
     public String consultar_pago(Date d1,Date d2){
         Respuesta respon  = new Respuesta();
         DB dbase = Utilities.getConection();

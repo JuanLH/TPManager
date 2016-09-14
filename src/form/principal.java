@@ -80,6 +80,7 @@ public class principal extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_principal = new javax.swing.JMenu();
@@ -92,6 +93,7 @@ public class principal extends javax.swing.JFrame {
         bscTPrestamo = new javax.swing.JMenuItem();
         bscRuta = new javax.swing.JMenuItem();
         bscRuta1 = new javax.swing.JMenuItem();
+        bscRuta2 = new javax.swing.JMenuItem();
         jMenu_nuevo = new javax.swing.JMenu();
         insUsuario = new javax.swing.JMenuItem();
         insPrestamo = new javax.swing.JMenuItem();
@@ -101,6 +103,7 @@ public class principal extends javax.swing.JFrame {
         insPago = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         insAbono = new javax.swing.JMenuItem();
+        insPago1 = new javax.swing.JMenuItem();
         jMenu_config1 = new javax.swing.JMenu();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         showReportPrestamosActivos = new javax.swing.JMenuItem();
@@ -116,6 +119,8 @@ public class principal extends javax.swing.JFrame {
         jMenuItem5.setText("jMenuItem5");
 
         jMenu6.setText("jMenu6");
+
+        jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("INVERSIONES A&M 2.0");
@@ -211,6 +216,15 @@ public class principal extends javax.swing.JFrame {
         });
         jMenu_buscar.add(bscRuta1);
 
+        bscRuta2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bscRuta2.setText("Gastos");
+        bscRuta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bscRuta2ActionPerformed(evt);
+            }
+        });
+        jMenu_buscar.add(bscRuta2);
+
         jMenuBar1.add(jMenu_buscar);
 
         jMenu_nuevo.setText("nuevo");
@@ -280,6 +294,15 @@ public class principal extends javax.swing.JFrame {
             }
         });
         jMenu_nuevo.add(insAbono);
+
+        insPago1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        insPago1.setText("Gasto");
+        insPago1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                insPago1ActionPerformed(evt);
+            }
+        });
+        jMenu_nuevo.add(insPago1);
 
         jMenuBar1.add(jMenu_nuevo);
         jMenu_nuevo.getAccessibleContext().setAccessibleName("nuevo ");
@@ -455,6 +478,18 @@ public class principal extends javax.swing.JFrame {
                     }
     }//GEN-LAST:event_showReportPrestamosActivosActionPerformed
 
+    private void insPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insPago1ActionPerformed
+        // TODO add your handling code here:
+        frm_insert_gastos frm = new frm_insert_gastos(this);
+        frm.setVisible(true);
+    }//GEN-LAST:event_insPago1ActionPerformed
+
+    private void bscRuta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bscRuta2ActionPerformed
+        // TODO add your handling code here:
+        frm_consult_gasto frm = new frm_consult_gasto(this, true);
+        frm.setVisible(true);
+    }//GEN-LAST:event_bscRuta2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -496,10 +531,12 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem bscPrestamo;
     private javax.swing.JMenuItem bscRuta;
     private javax.swing.JMenuItem bscRuta1;
+    private javax.swing.JMenuItem bscRuta2;
     private javax.swing.JMenuItem bscTPrestamo;
     private javax.swing.JMenuItem bscUsuario;
     private javax.swing.JMenuItem insAbono;
     private javax.swing.JMenuItem insPago;
+    private javax.swing.JMenuItem insPago1;
     private javax.swing.JMenuItem insPrestamo;
     private javax.swing.JMenuItem insRuta;
     private javax.swing.JMenuItem insRuta1;
@@ -512,6 +549,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenu jMenu_buscar;

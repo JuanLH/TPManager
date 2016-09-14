@@ -4,7 +4,6 @@ package clases;
 import java.awt.Dialog;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.util.Locale;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRDataSource;
 

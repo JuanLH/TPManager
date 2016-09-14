@@ -54,7 +54,7 @@ public class frm_consult_correo extends javax.swing.JDialog {
         ArrayList<Correo> lista = new ArrayList<Correo>();
         DefaultTableModel modelo = new DefaultTableModel();
         Correo correo = new Correo();
-        String [] col = {"ID","ID_CLIENTE","EMAIL","ESTADO"};
+        String [] col = {"ID","ID_USUARIO","FECHA","FECHA","MONTO","DESCRIPCION"};
         for (int i=0;i<col.length;i++)
             modelo.addColumn(col[i]);
         
