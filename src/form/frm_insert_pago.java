@@ -363,7 +363,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
                 pago.setId_tipo_pago(cmb_tpago.getSelectedIndex()+1);
                 pago.setId_prestamo(Integer.parseInt(txt_id_prestamo.getText()));
                 if(rad_fecha_actual.isSelected())
-                    pago.setFecha(Utilities.getCurrentDate());
+                    pago.setFecha((Date) Utilities.getCurrentDate());
                 if(rad_fecha_manual.isSelected()){
                     int day = DatePicker.getDate().getDate();
                     int month = DatePicker.getDate().getMonth();

@@ -6,6 +6,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.util.Map;
 import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JREmptyDataSource;
 
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
@@ -13,53 +14,55 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.view.JasperViewer;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 
 
-public abstract class AbstractJasperReports
+public class AbstractJasperReports
 {
     private static JasperReport report;
     private static JasperPrint  reportFilled;
     private static JasperViewer viewer;
     
 
-    public static void createReport( Connection conn, InputStream path,Map parametros )
+    public  AbstractJasperReports( Connection conn, InputStream path,Map parametros ) throws JRException
     {
-        try {
+        
             report = (JasperReport) JRLoader.loadObject(path);
             reportFilled = JasperFillManager.fillReport( report,parametros,conn );
-        }
-        catch( JRException ex ) {
-            ex.printStackTrace();
-        }
+        
     }
     
-    public static void createReport(JRDataSource conn, InputStream path,Map parametros )
+    public  AbstractJasperReports(JRDataSource conn, InputStream path,Map parametros ) throws JRException
     {
-        try {
+        
             report = (JasperReport) JRLoader.loadObject(path);
             reportFilled = JasperFillManager.fillReport(report, parametros, conn);
-        }
-        catch( JRException ex ) {
-            ex.printStackTrace();
-        }
+       
     }
     
-    public static void createReport(JRDataSource conn, String path )
+    public AbstractJasperReports(JRDataSource conn, String path ) throws JRException
     {
-        try {
+        
             report = (JasperReport) JRLoader.loadObjectFromFile(path);
             reportFilled = JasperFillManager.fillReport(report, null, conn);
-        }
-        catch( JRException ex ) {
-            ex.printStackTrace();
-        }
+        
+    }
+    
+    public AbstractJasperReports(InputStream path,Map parametros ) throws JRException{
+     
+            report = (JasperReport) JRLoader.loadObject(path);
+            reportFilled = JasperFillManager.fillReport(report, parametros,new JREmptyDataSource());
+        
     }
     public static void showViewer()
     {
-        viewer = new JasperViewer(reportFilled,false);
+        viewer = new JasperViewer(reportFilled, true);
         viewer.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
-        
         viewer.setVisible(true);
+    }
+    
+    public static void exportToPdf(String destFileName) throws JRException{
+        JasperExportManager.exportReportToPdfFile(reportFilled, destFileName);
     }
 
 }

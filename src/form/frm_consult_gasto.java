@@ -214,7 +214,7 @@ public class frm_consult_gasto extends javax.swing.JDialog {
         DefaultTableModel modelo = new DefaultTableModel();
         Gastos g = new Gastos();
         ArrayList<Gastos> list = new ArrayList<>();
-        String [] col = {"ID","ID_CLIENTE","EMAIL","ESTADO"};
+        String [] col = {"ID","ID_USUARIO","FECHA","MONTO","DESCRIPCION"};
         for (int i=0;i<col.length;i++)
             modelo.addColumn(col[i]);
       

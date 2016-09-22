@@ -13,6 +13,7 @@ import entidades.TipoPrestamo;
 import entidades.prestamoActivoReportClass;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -91,6 +92,7 @@ public class reportePrestamoActivo implements JRDataSource {
     public Object getFieldValue(JRField jrf) throws JRException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         //Utilities.println(""+count);
+        DecimalFormat formateador = new DecimalFormat("###,###,###.##");
         Object valor = null;
         switch  (jrf.getName()){
             
@@ -107,19 +109,19 @@ public class reportePrestamoActivo implements JRDataSource {
                 valor =  prestamos.get(count).getTelefono_cliente();
             break;  
             case  "monto_prestamo":
-                valor =  Integer.toString(prestamos.get(count).getMonto_prestamo());
+                valor =  formateador.format(prestamos.get(count).getMonto_prestamo());
             break;  
             case "pagos":
                 valor =  prestamos.get(count).getPagos();
             break;  
             case "monto_pago":
-                valor =  Integer.toString(prestamos.get(count).getMonto_pago());
+                valor =  formateador.format(prestamos.get(count).getMonto_pago());
             break;  
             case  "monto_pendiente":
-                valor =  Integer.toString(prestamos.get(count).getMonto_pendiente());
+                valor =  formateador.format(prestamos.get(count).getMonto_pendiente());
             break;  
             case "mon_pen_acum":
-                valor = Integer.toString(prestamos.get(count).getMonto_pen_acum());
+                valor = formateador.format(prestamos.get(count).getMonto_pen_acum());
             break;
         }
         //valor = "nose";

@@ -128,6 +128,22 @@ public class Gastos {
         
     }
     
+    
+    public ArrayList<Gastos> get_YMGastos(Date d1,Date d2) throws SQLException{
+        ArrayList<Gastos> lista = new ArrayList<>();
+        DB dbase = Utilities.getConection();
+        String query = "select * from gastos where fecha >= '"+(d1.getYear()+1900)+"/"+(d1.getMonth())+"/"+d1.getDate()+"' and fecha < '"+(d2.getYear()+1900)+"/"+(d2.getMonth())+"/"+d2.getDate()+"' and estado = 0";
+        ResultSet rs = dbase.execSelect(query);
+        while(rs.next()){
+            Gastos g = new Gastos(rs.getInt(1), rs.getInt(2), rs.getInt(6), rs.getDate(3),rs.getFloat(4), rs.getString(5));
+            lista.add(g);
+        }
+        dbase.CerrarConexion();
+        return lista;
+        
+    }
+    
+    
     public ArrayList<Gastos> get_gastos() throws SQLException{
         ArrayList<Gastos> lista = new ArrayList<>();
         DB dbase = Utilities.getConection();

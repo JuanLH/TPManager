@@ -252,7 +252,6 @@ public class frm_pago_ruta extends javax.swing.JDialog {
         //FileManager fm;no vaxxx
         String network_path_printer="\\\\10.0.0.36\\tickeadora";
         ticket_pago report = new ticket_pago(network_path_printer, true);    
-        
         ActionEvent evt = new ActionEvent(this, 1, "Impresiones");
         
         
@@ -264,7 +263,7 @@ public class frm_pago_ruta extends javax.swing.JDialog {
                 p.setId_tipo_pago(1);  
                 p.setId_prestamo(lista.get(x).getId());
                 if(rad_fecha_actual.isSelected())
-                p.setFecha(Utilities.getCurrentDate());
+                p.setFecha((Date) Utilities.getCurrentDate());
                 if(rad_fecha_manual.isSelected()){
                     int day = DatePicker.getDate().getDate();
                     int month = DatePicker.getDate().getMonth();

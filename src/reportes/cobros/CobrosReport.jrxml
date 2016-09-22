@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="72344926-4c74-49ad-afb8-d38c1365d7a1">
+	<property name="ireport.zoom" value="1.771561000000001"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="30"/>
+	<parameter name="fecha_inicial" class="java.lang.String"/>
+	<parameter name="fecha_final" class="java.lang.String"/>
+	<field name="ID_PAGO" class="java.lang.String"/>
+	<field name="MONTO" class="java.lang.String"/>
+	<field name="CLIENTE" class="java.lang.String"/>
+	<field name="FECHA" class="java.lang.String"/>
+	<field name="ACUMULADO" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement x="150" y="0" width="285" height="29" uuid="c1260801-4d45-4d39-81e1-d82a197497b8"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVERSIONES A&M]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="188" y="56" width="42" height="20" uuid="69153907-73fe-4c13-bbaa-57d988f7652f"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[DESDE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="29" width="297" height="27" uuid="ac8b072d-2535-4862-917c-80da4476bc8f"/>
+				<textElement textAlignment="Center">
+					<font size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE COBROS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="230" y="56" width="67" height="20" uuid="02678e51-1aac-4752-bc80-15b04a5aa5c1"/>
+				<textFieldExpression><![CDATA[$P{fecha_inicial}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="297" y="56" width="42" height="20" uuid="e7135346-7408-431c-b2e2-c85b30a17446"/>
+				<textElement textAlignment="Justified"/>
+				<text><![CDATA[HASTA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="339" y="56" width="100" height="20" uuid="fa9965ff-d6f0-4db4-baf9-0f1abaf79d01"/>
+				<textFieldExpression><![CDATA[$P{fecha_final}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="27" y="0" width="100" height="20" uuid="4809e5dd-111c-4894-b581-1c452c197d97"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ID_PAGO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="127" y="0" width="100" height="20" uuid="92b8775d-872e-4b7e-a56a-645819d016fa"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[MONTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="0" width="100" height="20" uuid="f1a6377f-a9cc-49a5-b60e-d780532c0bb7"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[CLIENTE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="0" width="100" height="20" uuid="19b0d742-0267-44d1-899c-81275a41700c"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FECHA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="427" y="0" width="100" height="20" uuid="e3e26051-3b6d-45cc-9ad4-c5d48946c0fd"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[ACUMULADO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="27" y="1" width="100" height="20" uuid="130f5da9-7f14-41f2-9e84-5da8f1e76d76"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ID_PAGO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="127" y="1" width="100" height="20" uuid="066b11b8-f409-411c-b883-1e01569d737a"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{MONTO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="227" y="1" width="100" height="20" uuid="9d48d965-60d1-47ea-80df-588b6ec1ddb6"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{CLIENTE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="1" width="100" height="20" uuid="66a48f0a-6ed1-4ea0-8a8e-13fa286b6f1d"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="427" y="0" width="100" height="20" uuid="5523c09b-ea67-4775-9383-1fcad4974753"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{ACUMULADO}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

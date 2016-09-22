@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="60ad2045-d32a-484b-9c9b-9847206deb2f">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="MONTH_YEAR" class="java.lang.String"/>
+	<parameter name="GANANCIA" class="java.lang.String"/>
+	<parameter name="GASTO" class="java.lang.String"/>
+	<parameter name="UTILIDAD_N" class="java.lang.String"/>
+	<parameter name="DIVIDENDO" class="java.lang.String"/>
+	<parameter name="UTILIDAD_R" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="161" y="0" width="285" height="29" uuid="2bdd70a7-daed-453b-94b7-fb9f15fc6aba"/>
+				<textElement textAlignment="Center">
+					<font size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[INVERSIONES A&M]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="29" width="228" height="20" uuid="cc2e7253-8607-44a1-ae5b-f162ef69358d"/>
+				<textElement textAlignment="Center">
+					<font isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[ REPORTE ESTADO DE RESULTADOS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="231" y="49" width="39" height="20" uuid="01df8422-c1df-4092-822e-32a12e9b721d"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[PARA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="270" y="49" width="100" height="20" uuid="dbe6e473-9c91-4ea5-9234-0681432f7eee"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$P{MONTH_YEAR}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="236" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="23" width="137" height="20" uuid="2819d339-3446-4cf2-a350-6d268087cf7a"/>
+				<text><![CDATA[TOTAL DE GANANCIAS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="359" y="23" width="100" height="20" uuid="34dcd9d9-bd75-43e5-800c-5e405ebbc2fd"/>
+				<textFieldExpression><![CDATA[$P{GANANCIA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="148" y="60" width="100" height="20" uuid="46c51e5a-c193-4bce-ae4e-23ea2c1675c0"/>
+				<text><![CDATA[TOTAL DE GASTOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="359" y="60" width="100" height="20" uuid="d6bd7552-b496-4c03-87b5-16855bf5d123"/>
+				<textFieldExpression><![CDATA[$P{GASTO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="149" y="94" width="280" height="1" uuid="7cae25ec-de85-4548-b076-c0c00b18e508"/>
+			</line>
+			<staticText>
+				<reportElement x="148" y="109" width="100" height="20" uuid="b036fc16-75e0-401b-86b9-ba0c38f96f11"/>
+				<text><![CDATA[UTILIDAD NETA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="359" y="109" width="100" height="20" uuid="eef65e21-6e1d-4234-a8f1-7e3c61294f56"/>
+				<textFieldExpression><![CDATA[$P{UTILIDAD_N}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="148" y="140" width="100" height="20" uuid="7c59527b-5d5d-4d94-9940-4428bfa6e905"/>
+				<text><![CDATA[DIVIDENDOS]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="359" y="140" width="100" height="20" uuid="34f42e21-3311-4c6c-b6fa-d130377d6479"/>
+				<textFieldExpression><![CDATA[$P{DIVIDENDO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="148" y="173" width="281" height="1" uuid="25258744-73d0-4648-8e0c-d3242564206e"/>
+			</line>
+			<staticText>
+				<reportElement x="148" y="188" width="109" height="20" uuid="a2247241-86ad-4a59-b9fa-2ead2809ad28"/>
+				<text><![CDATA[UTILIDAD RETENIDA]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="358" y="188" width="100" height="20" uuid="2c4dcbca-7779-4660-8e39-3c6e9082ce3d"/>
+				<textFieldExpression><![CDATA[$P{UTILIDAD_R}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="79" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="113" splitType="Stretch"/>
+	</summary>
+</jasperReport>

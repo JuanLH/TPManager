@@ -27,7 +27,7 @@ public class pagoReportClass {
     String pago;
     public pagoReportClass(int id_pago) throws SQLException {
         DB dbase = Utilities.getConection();
-        //-----Id_Prestamo---
+        //-----Id_Prestamo--- 
         String id_prestamo = "select p.id_prestamo from pago as p where p.id = "+id_pago+"";
         ResultSet rs = dbase.execSelect(id_prestamo);
         rs.next();

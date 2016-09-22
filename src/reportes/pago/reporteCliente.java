@@ -86,8 +86,14 @@ public class reporteCliente extends javax.swing.JFrame {
             datasource.addParticipante(p); 
         } 
         //Ejemplo del guille
-        AbstractJasperReports.createReport( datasource, path );
-        AbstractJasperReports.showViewer();
+        AbstractJasperReports jasper;
+        try {
+            jasper = new AbstractJasperReports( datasource, path );
+            jasper.showViewer();
+        } catch (JRException ex) {
+            Logger.getLogger(reporteCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         /*
         JasperReport reporte = null;

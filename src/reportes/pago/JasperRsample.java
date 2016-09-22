@@ -43,8 +43,8 @@ public class JasperRsample {
             datasource.addParticipante(p); 
         } */
         //Ejemplo del guille
-        AbstractJasperReports.createReport(datasource, path);
-        AbstractJasperReports.showViewer();
+        AbstractJasperReports jasper =new AbstractJasperReports(datasource, path);
+        jasper.showViewer();
         
         //reportePago rp = new reportePago(2, 4);
         //rp.getFieldValue();

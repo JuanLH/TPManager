@@ -248,12 +248,12 @@ public class frm_consult_ganancia extends javax.swing.JDialog {
         // TODO add your handling code here:
         
             if(fecha_inicial.before(fecha_final)){
-                Double ganancia = Utilities.getGanancia(fecha_inicial,fecha_final);
+                float ganancia = Utilities.getGanancia(fecha_inicial,fecha_final);
                 txt_result.setText("  "+ganancia);
             }
             else{
                 if(fecha_inicial.equals(fecha_final)){
-                    Double ganancia = Utilities.getGanancia(fecha_inicial,fecha_final);
+                    float ganancia = Utilities.getGanancia(fecha_inicial,fecha_final);
                     txt_result.setText("  "+ganancia);
                 }
                 else

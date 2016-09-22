@@ -107,6 +107,7 @@ public class principal extends javax.swing.JFrame {
         jMenu_config1 = new javax.swing.JMenu();
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         showReportPrestamosActivos = new javax.swing.JMenuItem();
+        showReportPrestamosActivos1 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -329,6 +330,15 @@ public class principal extends javax.swing.JFrame {
         });
         jMenu_config1.add(showReportPrestamosActivos);
 
+        showReportPrestamosActivos1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showReportPrestamosActivos1.setText("Estado de Resultados");
+        showReportPrestamosActivos1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showReportPrestamosActivos1ActionPerformed(evt);
+            }
+        });
+        jMenu_config1.add(showReportPrestamosActivos1);
+
         jMenuBar1.add(jMenu_config1);
 
         setJMenuBar(jMenuBar1);
@@ -463,8 +473,8 @@ public class principal extends javax.swing.JFrame {
                         reportePrestamoActivo datasource = new reportePrestamoActivo();
                         Map parametros = new HashMap();
                         parametros.put("fecha",Utilities.getCurrentDate().toString());
-                        AbstractJasperReports.createReport(datasource, path,parametros);
-                        AbstractJasperReports.showViewer();
+                        AbstractJasperReports jasper=new AbstractJasperReports(datasource, path,parametros);
+                        jasper.showViewer();
 
                     } catch (SQLException ex) {
                         Mensajes.mensajeError(evt, "OCURRIO UN ERROR PRESENTANDO EL REPORTE");
@@ -489,6 +499,18 @@ public class principal extends javax.swing.JFrame {
         frm_consult_gasto frm = new frm_consult_gasto(this, true);
         frm.setVisible(true);
     }//GEN-LAST:event_bscRuta2ActionPerformed
+
+    private void showReportPrestamosActivos1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReportPrestamosActivos1ActionPerformed
+        // TODO add your handling code here:
+        frm_rep_eResultado frm;
+        try {
+            frm = new frm_rep_eResultado(this,true);
+            frm.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }//GEN-LAST:event_showReportPrestamosActivos1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -563,5 +585,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem menu_cuenta;
     private javax.swing.JMenuItem menu_cuenta1;
     private javax.swing.JMenuItem showReportPrestamosActivos;
+    private javax.swing.JMenuItem showReportPrestamosActivos1;
     // End of variables declaration//GEN-END:variables
 }
