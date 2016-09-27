@@ -36,7 +36,6 @@ public class Backup {
         Runtime r = Runtime.getRuntime();
         Process p;
         ProcessBuilder pb;
-        r = Runtime.getRuntime();
         pb = new ProcessBuilder(comand);
         pb.environment().put( "PGPASSWORD", "JuanLH@20");
         pb.redirectErrorStream(true);

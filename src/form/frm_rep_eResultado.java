@@ -412,6 +412,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         try {
             AbstractJasperReports jasper = new AbstractJasperReports(path,parametros);
             JFileChooser fChooser = new JFileChooser();
+            fChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             int result = fChooser.showSaveDialog(new Frame());
             if(result == JFileChooser.APPROVE_OPTION){
                 File createdFile = fChooser.getSelectedFile();

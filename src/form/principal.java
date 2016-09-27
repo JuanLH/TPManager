@@ -8,12 +8,15 @@ package form;
 import clases.AbstractJasperReports;
 import clases.Mensajes;
 import clases.Utilities;
+import dataBase.Backup;
 import dto.DtoUsuario;
+import java.awt.Frame;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
 import java.sql.Connection;
@@ -23,6 +26,8 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.stage.FileChooser;
+import javax.swing.JFileChooser;
 import reportes.prestamo_activo.reportePrestamoActivo;
 
 /**
@@ -86,6 +91,7 @@ public class principal extends javax.swing.JFrame {
         jMenu_principal = new javax.swing.JMenu();
         menu_cuenta = new javax.swing.JMenuItem();
         menu_cuenta1 = new javax.swing.JMenuItem();
+        menu_cuenta2 = new javax.swing.JMenuItem();
         jMenu_buscar = new javax.swing.JMenu();
         bscUsuario = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -156,6 +162,15 @@ public class principal extends javax.swing.JFrame {
             }
         });
         jMenu_principal.add(menu_cuenta1);
+
+        menu_cuenta2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menu_cuenta2.setText("Realizar Backup");
+        menu_cuenta2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cuenta2ActionPerformed(evt);
+            }
+        });
+        jMenu_principal.add(menu_cuenta2);
 
         jMenuBar1.add(jMenu_principal);
 
@@ -512,6 +527,28 @@ public class principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_showReportPrestamosActivos1ActionPerformed
 
+    private void menu_cuenta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cuenta2ActionPerformed
+        // TODO add your handling code here:
+        JFileChooser fChooser = new JFileChooser();
+        fChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        int result = fChooser.showSaveDialog(new Frame());
+        if(result == JFileChooser.APPROVE_OPTION){
+            try {
+                File createdFile = fChooser.getSelectedFile();
+                Backup.pg_dump("postgres", 
+                        "localhost",
+                        "TPManager",
+                        "\""+createdFile.getAbsolutePath()
+                                +File.separator+"AyM "
+                                +Utilities.getCurrentDate().toString()
+                                +".backup"+"\"");
+            } catch (IOException ex) {
+                Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_menu_cuenta2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -584,6 +621,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem menu_cuenta;
     private javax.swing.JMenuItem menu_cuenta1;
+    private javax.swing.JMenuItem menu_cuenta2;
     private javax.swing.JMenuItem showReportPrestamosActivos;
     private javax.swing.JMenuItem showReportPrestamosActivos1;
     // End of variables declaration//GEN-END:variables
