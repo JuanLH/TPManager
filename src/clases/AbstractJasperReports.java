@@ -54,14 +54,16 @@ public class AbstractJasperReports
             reportFilled = JasperFillManager.fillReport(report, parametros,new JREmptyDataSource());
         
     }
-    public static void showViewer()
+    public void showViewer()
     {
-        viewer = new JasperViewer(reportFilled, true);
-        viewer.setModalExclusionType(Dialog.ModalExclusionType.TOOLKIT_EXCLUDE);
+        viewer = new JasperViewer(reportFilled, false);
+        viewer.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
+        viewer.setResizable(true);
+        viewer.setFitWidthZoomRatio();
         viewer.setVisible(true);
     }
     
-    public static void exportToPdf(String destFileName) throws JRException{
+    public void exportToPdf(String destFileName) throws JRException{
         JasperExportManager.exportReportToPdfFile(reportFilled, destFileName);
     }
 

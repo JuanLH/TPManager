@@ -57,7 +57,7 @@ public class ReporteGananciaSource implements JRDataSource{
                 valor =  Integer.toString(pagos.get(count).getId());
             break;
             case "fecha_pago":
-                valor =  pagos.get(count).getFecha();
+                valor =  pagos.get(count).getFecha().toString();
             break;
             case "tipo_pago":
                 valor =  pagos.get(count).getTipo_pago_nombre();
@@ -68,11 +68,17 @@ public class ReporteGananciaSource implements JRDataSource{
             case  "interes_prestamo":
                 valor =  formateador.format(pagos.get(count).getInteres_prestamo());
             break;  
-            case "gananca_prestamo":
-                valor =  formateador.format(pagos.get(count).getGanancia_prestamo());
+            case "ganancia_prestamo":  
+                if(pagos.get(count).getGanancia_prestamo()==-3.0){
+                    valor = (Object)"INDEFINIDO";
+                }
+                else{
+                    valor =  formateador.format(pagos.get(count).getGanancia_prestamo());   
+                }
+                  
             break;  
             case "cant_total_pagos":
-                valor =  pagos.get(count).getCantidad_pago_prestamo();
+                valor = pagos.get(count).getCantidad_pago_prestamo()+"";
             break;  
             case  "monto_pago":
                 valor =  formateador.format(pagos.get(count).getMonto_pago());

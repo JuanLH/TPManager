@@ -28,6 +28,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
+import reportes.prestamo_activo.PrestActRunnable;
 import reportes.prestamo_activo.reportePrestamoActivo;
 
 /**
@@ -481,26 +482,9 @@ public class principal extends javax.swing.JFrame {
 
     private void showReportPrestamosActivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReportPrestamosActivosActionPerformed
         // TODO add your handling code here:
-        
-                    try {
-                        InputStream path = this.getClass().getResourceAsStream("/reportes/prestamo_activo/prestamo.jasper");
-                        System.out.println("Path input stream---> "+path);
-                        reportePrestamoActivo datasource = new reportePrestamoActivo();
-                        Map parametros = new HashMap();
-                        parametros.put("fecha",Utilities.getCurrentDate().toString());
-                        AbstractJasperReports jasper=new AbstractJasperReports(datasource, path,parametros);
-                        jasper.showViewer();
-
-                    } catch (SQLException ex) {
-                        Mensajes.mensajeError(evt, "OCURRIO UN ERROR PRESENTANDO EL REPORTE");
-                        System.out.println("Error BDD *** XXXX"+ex.getMessage());
-                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    catch (Exception ex){
-                        Mensajes.mensajeError(evt, "OCURRIO UN ERROR PRESENTANDO EL REPORTE");
-                        System.out.println("Exception unexpected -->"+ex.getMessage());
-                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+        PrestActRunnable runnable=new PrestActRunnable(); 
+        Thread hilo = new Thread(runnable);
+        hilo.start();
     }//GEN-LAST:event_showReportPrestamosActivosActionPerformed
 
     private void insPago1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insPago1ActionPerformed

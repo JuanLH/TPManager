@@ -5,6 +5,7 @@
  */
 package form;
 
+import clases.AbstractJasperReports;
 import clases.Mensajes;
 import clases.Respuesta;
 import com.google.gson.Gson;
@@ -22,7 +23,13 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
+import java.io.InputStream;
 import java.sql.Date;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import reportes.ganancia.ReporteGananciaSource;
 
 /**
  *
@@ -35,11 +42,13 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
      */
     
     Date fecha_inicial,fecha_final;
+    ArrayList<Pago> lista;
     public frm_consult_ganancia_detallada() {
         initComponents();
         GraphicsDevice grafica=GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         //grafica.setFullScreenWindow(this);
         this.setBounds(grafica.getDefaultConfiguration().getBounds());
+        btn_imprimir.setEnabled(false);
         this.setVisible(true);
         
     }
@@ -50,7 +59,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
         GraphicsDevice grafica=GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
         //grafica.setFullScreenWindow(this);
         this.setBounds(grafica.getDefaultConfiguration().getBounds());
-        
+        btn_imprimir.setEnabled(false);
         this.setVisible(true);
         
         
@@ -88,6 +97,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
+        btn_imprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("BUSCAR PAGOS Y GANANCIA");
@@ -103,7 +113,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
 
         btn_buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_buscar.setText("BUSCAR");
-        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_buscar.setName("btn_buscar"); // NOI18N
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,7 +123,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
 
         jButton5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton5.setText("CANCELAR");
-        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton5.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton5.setName("btn_aceptar"); // NOI18N
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -183,7 +193,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
 
         btn_limpiar_fecha.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_limpiar_fecha.setText("LIMPIAR ");
-        btn_limpiar_fecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_limpiar_fecha.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_limpiar_fecha.setName("btn_aceptar"); // NOI18N
         btn_limpiar_fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +203,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
 
         btn_elegir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         btn_elegir.setText("ELEGIR FECHA");
-        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btn_elegir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btn_elegir.setName("btn_aceptar"); // NOI18N
         btn_elegir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -264,6 +274,16 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
             }
         });
 
+        btn_imprimir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btn_imprimir.setText("IMPRIMIR");
+        btn_imprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btn_imprimir.setName("btn_buscar"); // NOI18N
+        btn_imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_imprimirActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -296,6 +316,8 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
                         .addGap(0, 394, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btn_imprimir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btn_buscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)))
@@ -328,7 +350,8 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_imprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -350,7 +373,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
     private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
         // TODO add your handling code here:
         Gson json = new Gson();
-        List<Pago> lista = new ArrayList<Pago>(); 
+        lista = new ArrayList<Pago>(); 
         DefaultTableModel modelo = new DefaultTableModel();
         String [] col = {"ID","FECHA","PAGO","MONTO PREST","INTERES PREST","GANANCIA PREST","# PAGOS PREST","MONTO PAGO","GANANCIA PAGO","GANANCIA ACUM"};
         Pago pago = new Pago();
@@ -539,6 +562,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
                 System.out.println("Error bdd :"+respon.getMensaje());
             }
         }
+        btn_imprimir.setEnabled(true);
             
 
     }//GEN-LAST:event_btn_buscarActionPerformed
@@ -603,6 +627,44 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
         txt_id_cliente.setText(Integer.toString(DtoCliente.getIdCliente()));
     }//GEN-LAST:event_jLabel8MousePressed
 
+    private void btn_imprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_imprimirActionPerformed
+        // TODO add your handling code here:
+        ReporteGananciaSource ganSource = new ReporteGananciaSource(lista);
+        InputStream path = this.getClass().getResourceAsStream("/reportes/ganancia/gananciaReport.jasper");
+        HashMap params = new HashMap();
+        if(!txt_id.getText().isEmpty()){
+            if(fechaIsEmpy()){
+                params.put("origin", "PRESTAMO # "+txt_id.getText());
+            }
+            else{
+                params.put("origin", "PRESTAMO # "+txt_id.getText()+" ENTRE "+txt_fecha_inicial.getText()+" Y "+txt_fecha_final.getText());
+            }
+        }
+        else if(!txt_id_cliente.getText().isEmpty()){
+            if(fechaIsEmpy()){
+                params.put("origin", "CLIENTE # "+txt_id_cliente.getText());
+            }
+            else{
+                params.put("origin", "CLIENTE # "+txt_id_cliente.getText()+" ENTRE "+txt_fecha_inicial.getText()+" Y "+txt_fecha_final.getText());
+            }
+        }
+        else if(txt_id.getText().isEmpty() && txt_id_cliente.getText().isEmpty()){
+            if(fechaIsEmpy()){
+                params.put("origin", "DESDE EL INICIO DE LOS TIEMPOS");
+            }
+            else{
+                params.put("origin", "ENTRE "+txt_fecha_inicial.getText()+" Y "+txt_fecha_final.getText());
+            }
+        }
+       
+        try {
+            AbstractJasperReports jasper = new AbstractJasperReports(ganSource, path, params);
+            jasper.showViewer();
+        } catch (JRException ex) {
+            Logger.getLogger(frm_consult_ganancia_detallada.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btn_imprimirActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -642,6 +704,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
     private javax.swing.JButton btn_elegir;
+    private javax.swing.JButton btn_imprimir;
     private javax.swing.JButton btn_limpiar_fecha;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton5;
