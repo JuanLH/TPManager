@@ -34,6 +34,7 @@ public class Pago {
     
     /*-------------------------------------------------------------*/
     Float ganancia_acumulada;
+    Float cobro_acumulado;
 
     
     
@@ -101,6 +102,14 @@ public class Pago {
 
     public Date getFecha() {
         return fecha;
+    }
+
+    public Float getCobro_acumulado() {
+        return cobro_acumulado;
+    }
+
+    public void setCobro_acumulado(Float cobro_acumulado) {
+        this.cobro_acumulado = cobro_acumulado;
     }
 
     public void setFecha(Date fecha) {
@@ -247,6 +256,7 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
@@ -261,6 +271,7 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
@@ -275,6 +286,7 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
@@ -289,6 +301,7 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
@@ -303,6 +316,7 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
@@ -317,12 +331,29 @@ public class Pago {
         query +="p.fecha,";
         query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
         query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
         query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
         query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
         query +="(SELECT get_monto_pago((select tipo_prestamo_id from prestamo where id = p.id_prestamo),p.id_tipo_pago)),";
         query +="(SELECT get_ganancia_pago((select tipo_prestamo_id from prestamo where id = p.id_prestamo),p.id_tipo_pago))";
         query +="from pago as p where p.fecha >= '"+d1.getYear()+"-"+(d1.getMonth()+1)+"-"+d1.getDate()+"' and p.fecha <= '"+d2.getYear()+"-"+(d2.getMonth()+1)+"-"+d2.getDate()+"'";
+        return query;
+    }
+    
+    
+    public String get_query_pagolist(Date d1,Date d2){
+         String query = "select p.id,";
+        query +="p.fecha,";
+        query +="(select tipo from tipo_pago where id=p.id_tipo_pago),";
+        query +="(select monto from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(select cli.nombre||' '||cli.apellido from cliente as cli where cli.id = (select pr.cliente_id from prestamo pr where pr.id = p.id_prestamo)),";
+        query +="(select interes from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(SELECT tipo_prestamo_ganancia((select tipo_prestamo_id from prestamo where id = p.id_prestamo))),";
+        query +="(select pagos from tipo_prestamo where id = (select tipo_prestamo_id from prestamo where id = p.id_prestamo)),";
+        query +="(SELECT get_monto_pago((select tipo_prestamo_id from prestamo where id = p.id_prestamo),p.id_tipo_pago)),";
+        query +="(SELECT get_ganancia_pago((select tipo_prestamo_id from prestamo where id = p.id_prestamo),p.id_tipo_pago))";
+        query +="from pago as p where p.fecha >= '"+(d1.getYear()+1900)+"-"+(d1.getMonth()+1)+"-"+d1.getDate()+"' and p.fecha <= '"+(d2.getYear()+1900)+"-"+(d2.getMonth()+1)+"-"+d2.getDate()+"'";
         return query;
     }
     
@@ -388,11 +419,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+                pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -432,11 +464,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+                pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -477,11 +510,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+               pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -524,11 +558,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+               pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -571,11 +606,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+                pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -618,11 +654,12 @@ public class Pago {
                 pago.setFecha(rs.getDate(2));
                 pago.setTipo_pago_nombre(rs.getString(3));
                 pago.setMonto_prestamo(rs.getInt(4));
-                pago.setInteres_prestamo(rs.getDouble(5));
-                pago.setGanancia_prestamo(rs.getDouble(6));
-                pago.setCantidad_pago_prestamo(rs.getInt(7));
-                pago.setMonto_pago(rs.getDouble(8));
-                pago.setGanancia_pago(rs.getFloat(9));
+                pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
                 ganancia_acum = ganancia_acum + pago.getGanancia_pago();
                 pago.setGanancia_acumulada(ganancia_acum);
                 lista.add(pago);
@@ -647,6 +684,42 @@ public class Pago {
         dbase.CerrarConexion();
         return respon.ToJson(respon); 
         
+    }    
+    //MEthod for cobrosReport and sum the monto of each pago
+    public ArrayList<Pago> consultar_pago_cobro(Date d1,Date d2){
+        
+        DB dbase = Utilities.getConection();
+        ArrayList<Pago> lista = new ArrayList<Pago>();
+        float cobros_acum = 0;
+        System.out.println(get_query_pagolist(d1,d2));
+        
+        try{
+            ResultSet rs=dbase.execSelect(get_query_pagolist(d1,d2));
+            //System.out.println("Query : "+sql);
+            while(rs.next()){
+                Pago pago = new Pago();
+                pago.setId(rs.getInt(1));
+                pago.setFecha(rs.getDate(2));
+                pago.setTipo_pago_nombre(rs.getString(3));
+                pago.setMonto_prestamo(rs.getInt(4));
+                pago.setNombre_cliente(rs.getString(5));
+                pago.setInteres_prestamo(rs.getDouble(6));
+                pago.setGanancia_prestamo(rs.getDouble(7));
+                pago.setCantidad_pago_prestamo(rs.getInt(8));
+                pago.setMonto_pago(rs.getDouble(9));
+                pago.setGanancia_pago(rs.getFloat(10));
+                cobros_acum = (float) (cobros_acum + pago.getMonto_pago());
+                pago.setCobro_acumulado(cobros_acum);
+                lista.add(pago);
+            }
+           
+        }
+        catch (SQLException ex){
+            System.out.println("Error sql --> "+ex.getMessage());
+        }
+        
+        
+        return lista;
     }    
     
     public static int getCantidad_pagos(int id_prestamo,int tipo_pago){

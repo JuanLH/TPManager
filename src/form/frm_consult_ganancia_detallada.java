@@ -521,6 +521,7 @@ public class frm_consult_ganancia_detallada extends javax.swing.JDialog {
             
                 for (JsonElement json2: array)
                 {
+                   
                     pago = json.fromJson(json2,Pago.class);
                     lista.add(pago);
                 }

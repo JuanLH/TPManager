@@ -255,15 +255,15 @@ public class frm_pago_ruta extends javax.swing.JDialog {
         ActionEvent evt = new ActionEvent(this, 1, "Impresiones");
         
         
-        if(!lista.isEmpty() /*&& report.test_stream()*/){
+        if(!lista.isEmpty() && report.test_stream()){
             for(int x = 0;x<lista.size();x++){
-                
                 Pago p = new Pago();
                 p.setId(Utilities.getMaxId("pago"));
                 p.setId_tipo_pago(1);  
                 p.setId_prestamo(lista.get(x).getId());
-                if(rad_fecha_actual.isSelected())
-                p.setFecha((Date) Utilities.getCurrentDate());
+                if(rad_fecha_actual.isSelected()){
+                    p.setFecha((Date) Utilities.getCurrentDate());
+                }
                 if(rad_fecha_manual.isSelected()){
                     int day = DatePicker.getDate().getDate();
                     int month = DatePicker.getDate().getMonth();
@@ -276,24 +276,8 @@ public class frm_pago_ruta extends javax.swing.JDialog {
             
                 if(respon.equals("1")){ 
                     if(x==0)
-                        Mensajes.mensajeInfo(evt, "SE AGREGARON EXITOSAMENTE ");
-                
-                    
-                   /* try {
-                        String  path = "reportes\\pago\\pagoReport.jasper";
-                        reportePago datasource = new reportePago(p.getId());
-                        AbstractJasperReports.createReport(datasource, path);
-                        AbstractJasperReports.showViewer();
-                        
-                
-                    } catch (SQLException ex) {
-                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
-                    }*/
-                    
-                
-                //report.print(p.getId());
-                Mensajes.mensajeInfo(evt, " pulse Ok Para continuar ");
-                this.setVisible(false);
+                        Mensajes.mensajeInfo(evt, "SE AGREGARON EXITOSAMENTE "); 
+                report.print(p.getId());
                 }
                 
             }

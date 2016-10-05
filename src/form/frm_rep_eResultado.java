@@ -7,8 +7,10 @@ package form;
 import clases.AbstractJasperReports;
 import clases.JlMonth;
 import clases.Mensajes;
+import clases.Respuesta;
 import clases.Utilities;
 import dataBase.DB;
+import entidades.Cuenta;
 import java.awt.Frame;
 import java.io.File;
 import java.io.InputStream;
@@ -404,7 +406,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
 
     private void btn_showReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_showReportActionPerformed
         
-       
+       String path_report=null;
         float dividendo = Float.parseFloat(txt_dividendo.getText());
         InputStream path = this.getClass().getResourceAsStream("/reportes/estadoResultado/estadoResultado.jasper");
         parametros.put("DIVIDENDO", formateador.format(dividendo));
@@ -416,10 +418,30 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
             int result = fChooser.showSaveDialog(new Frame());
             if(result == JFileChooser.APPROVE_OPTION){
                 File createdFile = fChooser.getSelectedFile();
-                jasper.exportToPdf(createdFile.getAbsolutePath());
+                path_report = createdFile.getAbsolutePath()+File.separator+Utilities.getCurrentDate().toString();
+                jasper.showViewer();
+                jasper.exportToPdf(createdFile.getAbsolutePath()+File.separator+Utilities.getCurrentDate().toString());
+                Respuesta respon = Cuenta.Retirar(Integer.parseInt(txt_dividendo.getText()),"DIVIDENDOS - ESTADO DE RESULTADOS");
+                if(respon.getId()>0){
+                     if(respon.getMensaje().equals("1")){
+                        Mensajes.mensajeInfo(evt, "SE RETIRO CON EXITO");
+                        this.dispose();
+                
+                    }
+                    else if(respon.getMensaje().equals("0")){
+                        Mensajes.mensajeInfo(evt, "NO HAY FONDO SUFICIENTE PARA HACER ESTE RETIRO");
+                        Utilities.txtClean(this);
+                    }
+                    else{
+                        Mensajes.mensajeError(evt, "NO SE PUDO RETIRAR");
+                    }
+                }
             }
-            jasper.showViewer();
-            String query = "INSERT INTO public.\"Reporte_er_log\"(year, month, ruta)  VALUES ("+prevYm.getYear()+", "+prevYm.getMonthValue()+", '"+fChooser.getSelectedFile().getAbsolutePath()+"');";
+            else{
+                return;
+            }
+            
+            String query = "INSERT INTO public.\"Reporte_er_log\"(year, month, ruta)  VALUES ("+prevYm.getYear()+", "+prevYm.getMonthValue()+", '"+path_report+"');";
             DB dbase = Utilities.getConection();
             try {
                 dbase.executeQuery(query);
@@ -429,7 +451,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         } catch (JRException ex) {
             Logger.getLogger(frm_rep_eResultado.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        this.dispose();
                         
        
     }//GEN-LAST:event_btn_showReportActionPerformed

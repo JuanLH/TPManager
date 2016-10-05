@@ -18,20 +18,21 @@ import net.sf.jasperreports.engine.JRField;
  */
 public class ReporteGananciaSource implements JRDataSource{
     ArrayList<Pago> pagos;
-    static boolean val=false;
-    static  int count;
+     boolean val=false;
+     int count;
+     int size;
     public ReporteGananciaSource(ArrayList<Pago> pagos){
         this.pagos = pagos;
+        size = pagos.size()-1;
     } 
     
     @Override
     public boolean next() throws JRException {
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        int size = pagos.size();
         
-        while(count<size-1){
+        
+        while(count<size){
             if(!val){
-                count++;
                 val = true;
                 return true;
             }

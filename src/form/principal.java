@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import reportes.prestamo_activo.PrestActRunnable;
 import reportes.prestamo_activo.reportePrestamoActivo;
@@ -91,7 +90,6 @@ public class principal extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_principal = new javax.swing.JMenu();
         menu_cuenta = new javax.swing.JMenuItem();
-        menu_cuenta1 = new javax.swing.JMenuItem();
         menu_cuenta2 = new javax.swing.JMenuItem();
         jMenu_buscar = new javax.swing.JMenu();
         bscUsuario = new javax.swing.JMenuItem();
@@ -115,6 +113,8 @@ public class principal extends javax.swing.JFrame {
         jSeparator4 = new javax.swing.JPopupMenu.Separator();
         showReportPrestamosActivos = new javax.swing.JMenuItem();
         showReportPrestamosActivos1 = new javax.swing.JMenuItem();
+        showReportPrestamosActivos2 = new javax.swing.JMenuItem();
+        showReportPrestamosActivos3 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -154,15 +154,6 @@ public class principal extends javax.swing.JFrame {
             }
         });
         jMenu_principal.add(menu_cuenta);
-
-        menu_cuenta1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        menu_cuenta1.setText("Consultar Ganancia");
-        menu_cuenta1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                menu_cuenta1ActionPerformed(evt);
-            }
-        });
-        jMenu_principal.add(menu_cuenta1);
 
         menu_cuenta2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         menu_cuenta2.setText("Realizar Backup");
@@ -355,6 +346,24 @@ public class principal extends javax.swing.JFrame {
         });
         jMenu_config1.add(showReportPrestamosActivos1);
 
+        showReportPrestamosActivos2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showReportPrestamosActivos2.setText("Cobros");
+        showReportPrestamosActivos2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showReportPrestamosActivos2ActionPerformed(evt);
+            }
+        });
+        jMenu_config1.add(showReportPrestamosActivos2);
+
+        showReportPrestamosActivos3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        showReportPrestamosActivos3.setText("Ganancias");
+        showReportPrestamosActivos3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showReportPrestamosActivos3ActionPerformed(evt);
+            }
+        });
+        jMenu_config1.add(showReportPrestamosActivos3);
+
         jMenuBar1.add(jMenu_config1);
 
         setJMenuBar(jMenuBar1);
@@ -453,12 +462,6 @@ public class principal extends javax.swing.JFrame {
         frm_client.setVisible(true);
     }//GEN-LAST:event_insRuta1ActionPerformed
 
-    private void menu_cuenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cuenta1ActionPerformed
-        // TODO add your handling code here:
-        frm_consult_ganancia frm = new frm_consult_ganancia(this,true);
-        frm.setVisible(true);
-    }//GEN-LAST:event_menu_cuenta1ActionPerformed
-
     private void insAbonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_insAbonoActionPerformed
         // TODO add your handling code here:
         frm_insert_abono frm = new frm_insert_abono(this, true);
@@ -533,6 +536,18 @@ public class principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_menu_cuenta2ActionPerformed
 
+    private void showReportPrestamosActivos2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReportPrestamosActivos2ActionPerformed
+        // TODO add your handling code here:
+        frm_rep_cobros frm = new frm_rep_cobros(this);
+        frm.setVisible(true);
+    }//GEN-LAST:event_showReportPrestamosActivos2ActionPerformed
+
+    private void showReportPrestamosActivos3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showReportPrestamosActivos3ActionPerformed
+        // TODO add your handling code here:
+        frm_consult_ganancia frm = new frm_consult_ganancia(this,true);
+        frm.setVisible(true);
+    }//GEN-LAST:event_showReportPrestamosActivos3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -604,9 +619,10 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem menu_cuenta;
-    private javax.swing.JMenuItem menu_cuenta1;
     private javax.swing.JMenuItem menu_cuenta2;
     private javax.swing.JMenuItem showReportPrestamosActivos;
     private javax.swing.JMenuItem showReportPrestamosActivos1;
+    private javax.swing.JMenuItem showReportPrestamosActivos2;
+    private javax.swing.JMenuItem showReportPrestamosActivos3;
     // End of variables declaration//GEN-END:variables
 }

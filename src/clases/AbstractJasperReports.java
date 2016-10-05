@@ -57,7 +57,7 @@ public class AbstractJasperReports
     public void showViewer()
     {
         viewer = new JasperViewer(reportFilled, false);
-        viewer.setModalExclusionType(Dialog.ModalExclusionType.NO_EXCLUDE);
+        viewer.setModalExclusionType(Dialog.ModalExclusionType.APPLICATION_EXCLUDE);
         viewer.setResizable(true);
         viewer.setFitWidthZoomRatio();
         viewer.setVisible(true);
