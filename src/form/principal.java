@@ -131,7 +131,7 @@ public class principal extends javax.swing.JFrame {
         jMenuItem2.setText("jMenuItem2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("INVERSIONES A&M 2.0");
+        setTitle("INVERSIONES A&M 2.5");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setExtendedState(8);
         setResizable(false);

@@ -60,7 +60,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
             Logger.getLogger(frm_rep_eResultado.class.getName()).log(Level.SEVERE, null, ex);
         }
         utilidad_n = ganancia - gastos;
-        txt_util_r.setText(formateador.format(utilidad_n));
+        txt_util_n.setText(formateador.format(utilidad_n));
         
         parametros = new HashMap();
         parametros.put("MONTH_YEAR", prevYm.toString());
@@ -103,7 +103,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         ganancia = Utilities.getYMGanancia(d1, d2);
         gastos = Utilities.getYMGastos(d1, d2);
         utilidad_n = ganancia - gastos;
-        txt_util_r.setText(formateador.format(utilidad_n));
+        txt_util_n.setText(formateador.format(utilidad_n));
         
         parametros = new HashMap();
         parametros.put("MONTH_YEAR", prevYm.toString());
@@ -153,7 +153,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         btn_showReport = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        txt_util_r = new Main.JlTextFields();
+        txt_util_n = new Main.JlTextFields();
         jLabel9 = new javax.swing.JLabel();
         txt_dividendo = new Main.JlTextFields();
         jButton4 = new javax.swing.JButton();
@@ -226,12 +226,13 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         });
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel8.setText("UTILIDAD RETENIDA MES ANTERIOR");
+        jLabel8.setText("UTILIDAD NETA MES ANTERIOR");
 
-        txt_util_r.setKind(Main.KindTextField.NUMBER);
-        txt_util_r.addActionListener(new java.awt.event.ActionListener() {
+        txt_util_n.setEnabled(false);
+        txt_util_n.setKind(Main.KindTextField.NUMBER);
+        txt_util_n.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_util_rActionPerformed(evt);
+                txt_util_nActionPerformed(evt);
             }
         });
 
@@ -260,7 +261,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txt_dividendo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txt_util_r, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
+                            .addComponent(txt_util_n, javax.swing.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(185, 185, 185)
                         .addComponent(btn_showReport)))
@@ -279,7 +280,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(txt_util_r, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txt_util_n, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txt_dividendo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
@@ -411,6 +412,11 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         InputStream path = this.getClass().getResourceAsStream("/reportes/estadoResultado/estadoResultado.jasper");
         parametros.put("DIVIDENDO", formateador.format(dividendo));
         parametros.put("UTILIDAD_R", formateador.format(utilidad_n-dividendo));
+        
+        if(Float.parseFloat(txt_dividendo.getText()) > Float.parseFloat(txt_util_n.getText())){
+            Mensajes.mensajeError(evt, "EL DIVIDENDO NO PUEDE SER MAYOR QUE LA UTILIDAD NETA");
+            return;
+        }
         try {
             AbstractJasperReports jasper = new AbstractJasperReports(path,parametros);
             JFileChooser fChooser = new JFileChooser();
@@ -456,9 +462,9 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
        
     }//GEN-LAST:event_btn_showReportActionPerformed
 
-    private void txt_util_rActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_util_rActionPerformed
+    private void txt_util_nActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_util_nActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txt_util_rActionPerformed
+    }//GEN-LAST:event_txt_util_nActionPerformed
 
     private void txt_dividendoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dividendoActionPerformed
         // TODO add your handling code here:
@@ -522,7 +528,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
     private Main.JlTextFields txt_dividendo;
     private javax.swing.JTextField txt_ganancia;
     private javax.swing.JTextField txt_gastos;
-    private Main.JlTextFields txt_util_r;
+    private Main.JlTextFields txt_util_n;
     private javax.swing.JTextField txt_utilidad_n;
     // End of variables declaration//GEN-END:variables
 }

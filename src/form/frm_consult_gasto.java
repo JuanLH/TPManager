@@ -40,6 +40,19 @@ public class frm_consult_gasto extends javax.swing.JDialog {
         this.setLocation(point.getX(), point.getY());
         btn_eliminar.setEnabled(false);
     }
+    
+     private int dateIsEmpy(){
+        if(DatePicker1.getDate()==null && DatePicker2.getDate()==null){
+            return 0;
+        }
+        else if(DatePicker1.getDate().before(DatePicker2.getDate())){
+            return 1;
+        }
+        else{
+            return -1;
+        }
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -212,6 +225,7 @@ public class frm_consult_gasto extends javax.swing.JDialog {
 
     public void llenarTable() throws SQLException{
         DefaultTableModel modelo = new DefaultTableModel();
+        ActionEvent evt = new ActionEvent(this,1, "gastosdate");
         Gastos g = new Gastos();
         ArrayList<Gastos> list = new ArrayList<>();
         String [] col = {"ID","ID_USUARIO","FECHA","MONTO","DESCRIPCION"};
@@ -219,17 +233,38 @@ public class frm_consult_gasto extends javax.swing.JDialog {
             modelo.addColumn(col[i]);
       
         
+        
         if(DatePicker1.getDate()==null && DatePicker2.getDate()==null && txt_id_usuario.getText().isEmpty()){
            list = g.get_gastos();
         }
         else if (!(DatePicker1.getDate()==null && DatePicker2.getDate()==null) && txt_id_usuario.getText().isEmpty()){
-            list = g.get_gastos(DatePicker1.getDate(),DatePicker2.getDate() );
+            if(dateIsEmpy() == 1){
+                list = g.get_gastos(DatePicker1.getDate(),DatePicker2.getDate() );
+            }
+            else if(dateIsEmpy() == -1){
+                Mensajes.mensajeInfo(evt, "LA FECHA INICIAL NO PUEDE SER MAYOR QUE LA FINAL");
+                return;
+            }
+            else{
+                Mensajes.mensajeInfo(evt, "LOS CAMPOS DE FECHA DEBEN SER LLENADOS");
+                return;
+            }
         }
         else if(DatePicker1.getDate()==null && DatePicker2.getDate()==null && !(txt_id_usuario.getText().isEmpty())){
             list = g.get_gastos(Integer.parseInt(txt_id_usuario.getText()));
         }
         else{
-            list = g.get_gastos(Integer.parseInt(txt_id_usuario.getText()), DatePicker1.getDate(),DatePicker2.getDate());
+             if(dateIsEmpy() == 1){
+                list = g.get_gastos(Integer.parseInt(txt_id_usuario.getText()), DatePicker1.getDate(),DatePicker2.getDate());
+            }
+            else if(dateIsEmpy() == -1){
+                Mensajes.mensajeInfo(evt, "LA FECHA INICIAL NO PUEDE SER MAYOR QUE LA FINAL");
+                return;
+            }
+            else{
+                Mensajes.mensajeInfo(evt, "LOS CAMPOS DE FECHA DEBEN SER LLENADOS");
+                return;
+            }
         }
         
         if(list.isEmpty()){
@@ -300,6 +335,7 @@ public class frm_consult_gasto extends javax.swing.JDialog {
         txt_id_usuario.setText("");
         DatePicker1.setDate(null);
         DatePicker2.setDate(null);
+        tableGastos.setModel(new DefaultTableModel());
     }//GEN-LAST:event_btn_limpiarActionPerformed
 
     private void tableGastosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableGastosMousePressed
