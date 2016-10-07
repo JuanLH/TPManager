@@ -91,6 +91,7 @@ public class principal extends javax.swing.JFrame {
         jMenu_principal = new javax.swing.JMenu();
         menu_cuenta = new javax.swing.JMenuItem();
         menu_cuenta2 = new javax.swing.JMenuItem();
+        menu_cuenta3 = new javax.swing.JMenuItem();
         jMenu_buscar = new javax.swing.JMenu();
         bscUsuario = new javax.swing.JMenuItem();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -163,6 +164,15 @@ public class principal extends javax.swing.JFrame {
             }
         });
         jMenu_principal.add(menu_cuenta2);
+
+        menu_cuenta3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        menu_cuenta3.setText("Salir");
+        menu_cuenta3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menu_cuenta3ActionPerformed(evt);
+            }
+        });
+        jMenu_principal.add(menu_cuenta3);
 
         jMenuBar1.add(jMenu_principal);
 
@@ -548,6 +558,11 @@ public class principal extends javax.swing.JFrame {
         frm.setVisible(true);
     }//GEN-LAST:event_showReportPrestamosActivos3ActionPerformed
 
+    private void menu_cuenta3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menu_cuenta3ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_menu_cuenta3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -620,6 +635,7 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JPopupMenu.Separator jSeparator4;
     private javax.swing.JMenuItem menu_cuenta;
     private javax.swing.JMenuItem menu_cuenta2;
+    private javax.swing.JMenuItem menu_cuenta3;
     private javax.swing.JMenuItem showReportPrestamosActivos;
     private javax.swing.JMenuItem showReportPrestamosActivos1;
     private javax.swing.JMenuItem showReportPrestamosActivos2;
