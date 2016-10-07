@@ -9,6 +9,7 @@ import clases.JlMonth;
 import clases.Mensajes;
 import clases.Respuesta;
 import clases.Utilities;
+import clases.coordinates;
 import dataBase.DB;
 import entidades.Cuenta;
 import java.awt.Frame;
@@ -46,6 +47,8 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
     
     public frm_rep_eResultado() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         Date fecha = (Date) Utilities.getCurrentDate();
         ym = YearMonth.of(fecha.getYear()+1900, fecha.getMonth()+1);
         prevYm = JlMonth.getPreviousMonth(ym);
@@ -93,6 +96,8 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
     public frm_rep_eResultado(javax.swing.JFrame parent, boolean modal) throws SQLException {
         super(parent,modal);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         Date fecha = (Date) Utilities.getCurrentDate();
         ym = YearMonth.of(fecha.getYear()+1900, fecha.getMonth()+1);
         prevYm = JlMonth.getPreviousMonth(ym);
@@ -385,6 +390,8 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        float ganancia,gastos,utilidad_n;
+        
         if(jXDatePicker1.getDate()==null && jXDatePicker2.getDate()==null){
             Mensajes.mensajeError(evt, "DEBE LLENAR LAS FECHAS");
         }
@@ -413,7 +420,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         parametros.put("DIVIDENDO", formateador.format(dividendo));
         parametros.put("UTILIDAD_R", formateador.format(utilidad_n-dividendo));
         
-        if(Float.parseFloat(txt_dividendo.getText()) > Float.parseFloat(txt_util_n.getText())){
+        if(Float.parseFloat(txt_dividendo.getText()) > utilidad_n){
             Mensajes.mensajeError(evt, "EL DIVIDENDO NO PUEDE SER MAYOR QUE LA UTILIDAD NETA");
             return;
         }

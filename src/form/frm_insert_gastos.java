@@ -6,6 +6,8 @@
 package form;
 
 import clases.Mensajes;
+import clases.Utilities;
+import clases.coordinates;
 import entidades.Gastos;
 import java.sql.Date;
 import java.sql.SQLException;
@@ -23,16 +25,22 @@ public class frm_insert_gastos extends javax.swing.JDialog {
      */
     public frm_insert_gastos() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_gastos(javax.swing.JFrame parent) {
         super(parent,true);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
     public frm_insert_gastos(javax.swing.JDialog parent) {
         super(parent,true);
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
     }
     
 

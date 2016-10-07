@@ -6,6 +6,8 @@
             <file>file:/C:/Users/Juan%20Luis%20Hiciano/Documents/NetBeansProjects/TPManager/src/reportes/ganancia/ReporteGananciaSource.java</file>
             <file>file:/C:/Users/Juan%20Luis%20Hiciano/Documents/NetBeansProjects/TPManager/src/reportes/ganancia/gananiaReport.jrxml</file>
         </group>
-        <group name="Proyecto I"/>
+        <group name="Proyecto I">
+            <file>file:/home/juanlht/NetBeansProjects/TPManager/src/form/principal.java</file>
+        </group>
     </open-files>
 </project-private>

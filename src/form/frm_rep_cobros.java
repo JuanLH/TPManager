@@ -7,6 +7,8 @@ package form;
 
 import clases.AbstractJasperReports;
 import clases.Mensajes;
+import clases.Utilities;
+import clases.coordinates;
 import com.google.gson.Gson;
 import entidades.Pago;
 import java.io.InputStream;
@@ -36,6 +38,8 @@ public class frm_rep_cobros extends javax.swing.JDialog {
     
     public frm_rep_cobros() {
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         pago = new Pago();
         btn_imprimir.setEnabled(false);
         formateador = new DecimalFormat("###,###,###.##");
@@ -44,6 +48,8 @@ public class frm_rep_cobros extends javax.swing.JDialog {
     public frm_rep_cobros(javax.swing.JFrame parent) {
         super(parent,true);    
         initComponents();
+        coordinates point = Utilities.getCenterLocation(this);
+        this.setLocation(point.getX(), point.getY());
         pago = new Pago();
         btn_imprimir.setEnabled(false);
         formateador = new DecimalFormat("###,###,###.##");
