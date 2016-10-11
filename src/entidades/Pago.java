@@ -237,7 +237,7 @@ public class Pago {
             rs.next();
             if(rs.getInt(1)>0){
                 return "1";
-            }
+            }   
             else{
                 return "-1";
             }

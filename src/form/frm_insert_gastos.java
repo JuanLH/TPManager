@@ -250,6 +250,9 @@ public class frm_insert_gastos extends javax.swing.JDialog {
            try {
                 g.add_gasto();
                 Mensajes.mensajeInfo(evt, "SE AGREGO CORRECTAMENTE");
+                //limpiar despues de agregar
+                txt_monto.setText("");
+                txt_comentario.setText("");
            } catch (SQLException ex) {
                Mensajes.mensajeInfo(evt, "ERROR DE BASE DE DATOS");
                 Logger.getLogger(frm_insert_gastos.class.getName()).log(Level.SEVERE, null, ex);

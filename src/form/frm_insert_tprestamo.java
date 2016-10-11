@@ -338,9 +338,9 @@ public class frm_insert_tprestamo extends javax.swing.JDialog {
             return;   
         }
         else{
-            if(cmb_frm_prestamo.getSelectedIndex()==1){
+            if(cmb_frm_prestamo.getSelectedIndex()==0){
                 this.pagos=Integer.parseInt(txt_pagos.getText());}
-            else if(cmb_frm_prestamo.getSelectedIndex()==2){
+            else if(cmb_frm_prestamo.getSelectedIndex()==1){
                 this.pagos=0; }
             
             TipoPrestamo tPrestamo = new TipoPrestamo();

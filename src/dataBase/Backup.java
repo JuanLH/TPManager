@@ -16,7 +16,7 @@ import java.io.OutputStreamWriter;
  * @author Juan Luis Hiciano
  */
 public class Backup {
-    static String pgDump = "\"C:\\Program Files\\PostgreSQL\\9.5\\bin\\pg_dump.exe\"";
+    static String pgDump = "\"C:\\Program Files\\PostgreSQL\\9.3\\bin\\pg_dump.exe\"";
     
     public static void prn(String message){
         System.out.println(message);
@@ -37,7 +37,7 @@ public class Backup {
         Process p;
         ProcessBuilder pb;
         pb = new ProcessBuilder(comand);
-        pb.environment().put( "PGPASSWORD", "JuanLH@20");
+        pb.environment().put( "PGPASSWORD", "JuanLH@19");
         pb.redirectErrorStream(true);
         p = pb.start();
         BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));

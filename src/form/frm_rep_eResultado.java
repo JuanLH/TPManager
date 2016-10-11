@@ -109,6 +109,7 @@ public class frm_rep_eResultado extends javax.swing.JDialog {
         gastos = Utilities.getYMGastos(d1, d2);
         utilidad_n = ganancia - gastos;
         txt_util_n.setText(formateador.format(utilidad_n));
+        System.out.println("ganancia = "+ganancia +"gastos = "+gastos +" utilidad neta "+utilidad_n);
         
         parametros = new HashMap();
         parametros.put("MONTH_YEAR", prevYm.toString());

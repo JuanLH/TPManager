@@ -534,13 +534,15 @@ public class principal extends javax.swing.JFrame {
                 File createdFile = fChooser.getSelectedFile();
                 Backup.pg_dump("postgres", 
                         "localhost",
-                        "TPManager",
+                        "AyMDB",
                         "\""+createdFile.getAbsolutePath()
                                 +File.separator+"AyM "
                                 +Utilities.getCurrentDate().toString()
                                 +".backup"+"\"");
+                Mensajes.confirmar(evt,"BACKUP REALIZADO EXITOSAMENTE");
             } catch (IOException ex) {
                 Logger.getLogger(principal.class.getName()).log(Level.SEVERE, null, ex);
+                Mensajes.mensajeError(evt, "Error de Lectura");
             }
         }
         

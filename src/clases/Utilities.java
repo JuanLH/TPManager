@@ -32,7 +32,7 @@ public class Utilities {
     private static Connection cnn = null;
     
     public static DB getConection(){
-        DB dbase = new DB("TPM_Before","postgres","JuanLH@20");
+        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
         cnn = dbase.getConection();
         return dbase;
     }
@@ -368,7 +368,7 @@ public class Utilities {
         ArrayList<Pago> lista_pagos = new ArrayList<Pago>();
         //array que devuelve la lista de pagos de un periodo de tiempo
         
-        String query_pagos = "select id,id_tipo_pago,id_prestamo,fecha from pago where fecha >= '"+(d1.getYear()+1900)+"-"+(d1.getMonth())+"-"+d1.getDate()+"' and fecha < '"+(d2.getYear()+1900)+"-"+(d2.getMonth())+"-"+d2.getDate()+"'";
+        String query_pagos = "select id,id_tipo_pago,id_prestamo,fecha from pago where fecha >= '"+(d1.getYear()+1900)+"-"+(d1.getMonth())+"-"+d1.getDate()+"' and fecha <= '"+(d2.getYear()+1900)+"-"+(d2.getMonth())+"-"+d2.getDate()+"'";
         System.out.println(query_pagos);
         try{
             ResultSet rs = dbase.execSelect(query_pagos);
