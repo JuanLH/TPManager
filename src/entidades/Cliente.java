@@ -300,7 +300,7 @@ public class Cliente {
         }
      }
      
-     public static String getCliente_telefono(int id_cliente,DB dbase){
+    public static String getCliente_telefono(int id_cliente,DB dbase){
         //DB dbase = Utilities.getConection();
         String query = "SELECT  numero FROM telefono where cliente_id ="+id_cliente+";";
         try{
@@ -317,9 +317,34 @@ public class Cliente {
         }
      }
      
-     
-
-     
+    //==============================Nuevos cambios============================== 
+    public static Cliente getCliente(int id_cliente){
+        Cliente client = new Cliente();
+        DB dbase = Utilities.getConection();
+        String sql="SELECT id, nombre, apellido, cedula, direccion, apodo,sexo,nacimiento,estado edad  ";
+        sql +="FROM cliente where estado =1 and id = "+id_cliente+" ";
         
-         
+        try{
+            ResultSet rs=dbase.execSelect(sql);
+            if(rs.next()){
+                client.setId(rs.getInt(1));
+                client.setNombre(rs.getString(2));
+                client.setApellido(rs.getString(3));
+                client.setCedula(rs.getString(4));
+                client.setDireccion(rs.getString(5));
+                client.setApodo(rs.getString(6));
+                client.setSexo(rs.getInt(7));
+                client.setNacimiento(rs.getDate(8));
+                client.setEstado(rs.getInt(9));    
+            }
+            else{
+                return null;
+            }
+        }
+        catch(SQLException e){
+            return null;
+        }
+        
+        return client;
+     }       
 };

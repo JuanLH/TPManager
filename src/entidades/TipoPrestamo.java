@@ -263,7 +263,37 @@ public class TipoPrestamo {
         
         
     }
-
+    
+    //========================Nuevos cambios 2019===============================
+    
+    public static TipoPrestamo getTipoPrestamo(int id){
+        Respuesta respon  = new Respuesta();
+        DB dbase = Utilities.getConection();
+        TipoPrestamo tprestamo = new TipoPrestamo();
+        String sql;
+        sql = "SELECT id,monto,pagos,interes,estado,forma_prestamo_id ";
+        sql += "FROM tipo_prestamo where id = "+id+" and estado = 0;";
+        try{
+            ResultSet rs=dbase.execSelect(sql);
+            if(rs.next()){
+                tprestamo.setId(rs.getInt(1));
+                tprestamo.setMonto(rs.getInt(2));
+                tprestamo.setPagos(rs.getInt(3));
+                tprestamo.setInteres(rs.getFloat(4));
+                tprestamo.setEstado(rs.getInt(5));
+                tprestamo.setForma_prestamo_id(rs.getInt(6)); 
+            }  
+        }
+        catch(SQLException e){
+            //si falla un error de base de datos
+            System.out.println("Error TipoPrestamo -"+e.getMessage());
+            dbase.CerrarConexion();
+            return null;
+        }
+ 
+        dbase.CerrarConexion();
+        return tprestamo;
+    }
     
 }
 

@@ -32,7 +32,7 @@ public class Utilities {
     private static Connection cnn = null;
     
     public static DB getConection(){
-        DB dbase = new DB("AyMDB","postgres","JuanLH@19");
+        DB dbase = new DB("PManager","postgres","letmein");
         cnn = dbase.getConection();
         return dbase;
     }

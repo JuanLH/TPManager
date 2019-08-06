@@ -9,6 +9,7 @@ import clases.Mensajes;
 import clases.Utilities;
 import clases.coordinates;
 import com.google.gson.Gson;
+import dataBase.DB;
 import dto.DtoCliente;
 import dto.DtoPrestamo;
 import dto.DtoRuta;
@@ -16,9 +17,22 @@ import dto.DtoTPrestamo;
 import dto.DtoUsuario;
 import entidades.Cliente;
 import entidades.Prestamo;
+import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
+import reportes.amortizado.AmortizaDs;
 import reportes.recibo_prestamo.reportePrestamo;
 
 
@@ -330,7 +344,57 @@ public class frm_insert_prestamo extends javax.swing.JDialog {
                 if(eleccion == 0){
                     String respon = prestamo.insertar_Prestamo(json.toJson(prestamo));
                     if(respon.equals("1")){
-                        Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
+                        try {
+                            Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
+                            AmortizaDs ds = new AmortizaDs(prestamo);
+                            String report = "/reportes/amortizado/tabla_amort.jasper";
+                            InputStream reportIS = this.getClass()
+                                        .getResourceAsStream(report);
+                            // Compile jrxml file.
+                            //JasperReport jasperReport = JasperCompileManager
+                            //        .compileReport(report);
+                            // Parameters for report
+                            Map<String, Object> parameters = new HashMap<String, Object>();
+                            parameters.put("empresa", "COOPERATIVA JUANCITO");
+                            parameters.put("sucursal", "SUCURSAL SANTIAGO");
+                            parameters.put("nom_cliente", ds.cliente.getNombre() + " "+ds.cliente.getApellido() );
+                            SimpleDateFormat date_format = new SimpleDateFormat("dd-MM-yyyy");
+                            parameters.put("fech_inic_prest", date_format.format(new Date()));
+                            parameters.put("fecha_emision", date_format.format(new Date()));    
+                            parameters.put("reporte", "TABLA DE AMORTIZACION");
+                            parameters.put("tasa", ""+ds.tipo_prestamo.getInteres());
+                            parameters.put("tipo_amort", "CUOTAS FIJAS");
+                            parameters.put("monto_prestamo", ""+ds.tipo_prestamo.getMonto());
+                            parameters.put("frec_pagos", "MENSUAL");
+                            parameters.put("num_cuotas", ""+ds.tipo_prestamo.getPagos());
+                          
+                            // DataSource
+                            // This is simple example, no database.
+                            // then using empty datasource.
+                            //JRDataSource dataSource = new JREmptyDataSource();
+                            //JasperPrint jasperPrint = JasperFillManager.fillReport(reportIS,
+                            //        parameters,ds);
+                            //JasperViewer.viewReport(jasperPrint);
+                            
+                            
+                            
+                            AbstractJasperReports jasper = new AbstractJasperReports(ds, reportIS, parameters);
+                            jasper.showViewer();
+                            
+                            
+                            
+                            // Make sure the output directory exists.
+                            //File outDir = new File("C:/jasperoutput");
+                            //outDir.mkdirs();
+                            
+                            // Export to PDF.
+                            //JasperExportManager.exportReportToPdfFile(jasperPrint,
+                            //        "C:/jasperoutput/StyledTextReport.pdf");
+
+                            System.out.println("Done!");
+                        } catch (JRException ex) {
+                            Logger.getLogger(frm_insert_prestamo.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                     
                     else if(respon.equals("2"))
