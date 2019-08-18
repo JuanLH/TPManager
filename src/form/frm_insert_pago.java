@@ -20,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ItemListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -27,7 +28,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
-import reportes.pago.reportePago;
+import net.sf.jasperreports.engine.JRException;
+import reportes.pago.ReportePago;
 
 import reportes.pago.ticket_pago;
 
@@ -345,8 +347,8 @@ public class frm_insert_pago extends javax.swing.JDialog {
     private void btn_aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_aceptarActionPerformed
         // TODO add your handling code here:
         
-        String network_path_printer="\\\\10.0.0.36\\tickeadora";
-        ticket_pago report=new ticket_pago(network_path_printer, true);    
+        //String network_path_printer="\\\\10.0.0.36\\tickeadora";
+        //ticket_pago report=new ticket_pago(network_path_printer, true);    
 
         
         
@@ -357,7 +359,7 @@ public class frm_insert_pago extends javax.swing.JDialog {
         }
         else
         {  
-            if(report.test_stream()) {
+            //if(report.test_stream()) {
                 Pago pago = new Pago();
                 pago.setId(Integer.parseInt(txt_id.getText()));
                 pago.setId_tipo_pago(cmb_tpago.getSelectedIndex()+1);
@@ -376,10 +378,22 @@ public class frm_insert_pago extends javax.swing.JDialog {
                 String respon = pago.insertar_pago(json.toJson(pago));
             
                 if(respon.equals("1")){
-                    Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
-                    btn_aceptar.setEnabled(false);
-                    report.print(Integer.parseInt(txt_id.getText()));
-                    this.setVisible(false);
+                    try {
+                        Mensajes.mensajeInfo(evt, "SE AGREGO CON EXITO");
+                        btn_aceptar.setEnabled(false);
+                        ReportePago ds = new ReportePago(pago.getId());
+                        String report = "/reportes/pago/pagoReport.jasper";
+                        InputStream reportIS = this.getClass()
+                                .getResourceAsStream(report);
+                        AbstractJasperReports jasper = new AbstractJasperReports(ds, reportIS,null);
+                        jasper.showViewer();
+                        //report.print(Integer.parseInt(txt_id.getText()));
+                        this.setVisible(false);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
+                    } catch (JRException ex) {
+                        Logger.getLogger(frm_insert_pago.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 else if(respon.equals("0"))
                     Mensajes.mensajeError(evt, "EL CLIETE YA HA SALDADO EL PRESTAMO");   
@@ -391,12 +405,12 @@ public class frm_insert_pago extends javax.swing.JDialog {
                     Mensajes.mensajeError(evt, "ERROR DE BASE DE DATOS"); 
             
             
-            } 
+            /*} 
             else
             {
                 ActionEvent evt2 = new ActionEvent(this, 50, "Error de impresion");
                 Mensajes.mensajeError(evt2, "No se encuentra la impresora, usted puede\nInspeccionar el estado de la impresora\nY el estado de la red ");
-            }
+            }*/
         }
         
     }//GEN-LAST:event_btn_aceptarActionPerformed

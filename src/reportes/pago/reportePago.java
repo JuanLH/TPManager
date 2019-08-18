@@ -21,12 +21,12 @@ import java.util.logging.Logger;
  *
  * @author JuanLuis
  */
-public class reportePago implements JRDataSource {
+public class ReportePago implements JRDataSource {
     
     pagoReportClass pr;
     static int page = 0;
 
-    public reportePago(int id_pago) throws SQLException {
+    public ReportePago(int id_pago) throws SQLException {
         page = 0;
         pr = new pagoReportClass(id_pago);
     }

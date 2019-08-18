@@ -36,7 +36,7 @@ public class JasperRsample {
     public static void main(String[] args) throws JRException, SQLException {
         // TODO code application logic here
         //PruebaDataSource datasource = new PruebaDataSource();  
-        reportePago datasource = new reportePago(55);
+        ReportePago datasource = new ReportePago(55);
        /*for (int i = 1; i <= 10; i++) 
         { 
             Cliente p = new Cliente(i,"Cliente"+i+"","Apellido"+i+"","Cedula"+i+""); 

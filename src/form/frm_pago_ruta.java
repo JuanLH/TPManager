@@ -31,7 +31,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import reportes.pago.reportePago;
+import reportes.pago.ReportePago;
 import reportes.pago.ticket_pago;
 
 
